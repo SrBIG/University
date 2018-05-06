@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Лабораторная работа №1</title>
+    <script src="function.js"></script>
+    <script src="handleButtonClick.js"></script>
+    <script src="pipeline.js"></script>
+    <style type="text/css">
+
+    table {
+       border-collapse:
+        collapse;
+        width: 100%;
+        font-family:"Arial", Arial, sans-serif;
+    }
+    table, th, td {
+        border: 2px solid #114b2e;
+    }
+        th {
+            height: 50px;
+    	    background-color: #7da8ed;
+            color: white;
+            width: 10%;
+        }
+        tr:nth-child(even){
+            background-color: #bde6b6
+        }
+        tr {
+            color: #2e5c2f;
+            width: 10%;
+        }
+    h1 {
+        color: black;
+        text-transform: uppercase;
+        letter-spacing: -2px;
+        text-align: center;
+    }
+        p {
+            color: #2e5c2f;
+        }
+    input[type=text]{
+        color: #7aa438;
+    }
+        output{
+            color: black;
+        }
+    input[type=button] {
+        background-color: #7da8ed;
+        border: 2px;
+        border-style: inset;
+        border-color: blue;
+        color: white;
+        padding: 15px 50px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 20px;
+    }
+</style>
+</head>
+<body>
+<font face="Arial">
+<h1>Binary multiply</h1>
+<p>
+    Array A: <input type="text" id="inputA"> T: <input type="text" id="inputT">
+    <br>
+    <br>
+    Array B: <input type="text" id="inputB">
+    <input type="button" value="Multiply" onclick="handleButtonClick()">
+    <br>
+    <br>
+    Array C: <output id="result"></output></p>
+</font></p>
+
+    <table id="table">
+    <tr>
+    <th>Pair</th>
+    <th >Multiplication b[0]*A and addition</th>
+    <th>Shift left</th>
+    <th>Multiplication b[1]*A and addition</th>
+    <th>Shift left</th>
+    <th>Multiplication b[2]*A and addition</th>
+    <th>Shift left</th>
+    <th>Multiplication b[3]*A and addition</th>
+    <th>Result</th>
+    </tr>
+    </table>
+</body>
+</html>
