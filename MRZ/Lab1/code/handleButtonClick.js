@@ -90,8 +90,14 @@ function handleButtonClick() {
     var time = 0;
     for (var i = 0; i < m; i++){
         step[i] = 0;
-        res[i] = [];
-        previousRes[i] = [];
+        res[i] = {
+            resMultiply: [],
+            resSumm: []
+        };
+        previousRes[i] = {
+            resMultiply: [],
+            resSumm: []
+        };
     }
 
     for (var elemIndex = 0; elemIndex < m; elemIndex++){
@@ -111,10 +117,11 @@ function handleButtonClick() {
         }
 
         for (var j = elemIndex; j >= 0; j--){
+            alert(res[j].resSumm + j);
             if (step[j] < 8){
                 cellIndex = step[j]+1;
-                previousRes[j] = printBinaryRes(resToString(res[j]));
-                res[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j]);
+                previousRes[j].resSumm  = printBinaryRes(resToString(res[j].resSumm));
+                res[j].resSumm = pipeline(res[j].resSumm, boolArrA[j], boolArrB[j], step[j]);
                 if (step[j] == 0){
                     previousRes[j] = "0000 "+previousRes[j];
                 }
@@ -124,14 +131,14 @@ function handleButtonClick() {
                     var resCell = table.rows[rowIndex-1].cells[cellIndex];
                     resCell.innerHTML = "<b>A:</b> "+binaryToDecimal(resToString(boolArrA[j]))+
                         "<br>"+"<b>B:</b> "+binaryToDecimal(resToString(boolArrB[j]))+
-                        "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j]));
+                        "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j].resSumm));
                 } else {
                     var resCell = table.rows[rowIndex].cells[cellIndex];
                     resCell.innerHTML = "<b>A:</b> "+printBinary(resToString(boolArrA[j]))+
                         "<br>"+"<b>B:</b> "+printBinary(resToString(boolArrB[j]))+
                         "<br>"+
                             "<b>Previous result: </b>"+previousRes[j]+"<br>"+
-                        "<b>Result: </b>"+printBinaryRes(resToString(res[j]));
+                        "<b>Result: </b>"+printBinaryRes(resToString(res[j].resSumm));
                 }
                 step[j]++;
             }
@@ -144,8 +151,8 @@ function handleButtonClick() {
         for (var j = m-1; j >= 0; j--){
             if (step[j] < 8){
                 cellIndex = step[j]+1;
-                previousRes[j] = printBinaryRes(resToString(res[j]));
-                res[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j]);
+                previousRes[j] = printBinaryRes(resToString(res[j].resSumm));
+                res[j] = pipeline(res[j].resSumm, boolArrA[j], boolArrB[j], step[j]);
                 rowIndex = j + step[j] + 1;
 
                 if (step[j] == 7){
@@ -153,14 +160,14 @@ function handleButtonClick() {
                     var resCell = table.rows[rowIndex].cells[cellIndex];
                     resCell.innerHTML = "<b>A:</b> "+binaryToDecimal(resToString(boolArrA[j]))+
                         "<br>"+"<b>B:</b> "+binaryToDecimal(resToString(boolArrB[j]))+
-                        "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j]));
+                        "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j].resSumm));
                 } else {
                     var resCell = table.rows[rowIndex].cells[cellIndex];
                     resCell.innerHTML = "<b>A:</b> "+printBinary(resToString(boolArrA[j]))+
                         "<br>"+"<b>B:</b> "+printBinary(resToString(boolArrB[j]))+
                         "<br>"+
                         "<b>Previous result: </b>"+previousRes[j]+"<br>"+
-                        "<b>Result: </b>"+printBinaryRes(resToString(res[j]));
+                        "<b>Result: </b>"+printBinaryRes(resToString(res[j].resSumm));
                 }
                 step[j]++;
             }
@@ -175,7 +182,7 @@ function handleButtonClick() {
     }
 
     for (var i = 0; i < res.length; i++){
-        arrC[i] = binaryToDecimal(resToString(res[i]));
+        arrC[i] = binaryToDecimal(resToString(res[i].resSumm));
     }
 
     document.getElementById("result").value = arrC;
