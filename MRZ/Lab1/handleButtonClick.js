@@ -83,6 +83,7 @@ function handleButtonClick() {
     }
 
     var res = [];
+    var resMult = [];
     var previousRes = [];
     var cellIndex = 0;
     var rowIndex = 0;
@@ -91,6 +92,7 @@ function handleButtonClick() {
     for (var i = 0; i < m; i++){
         step[i] = 0;
         res[i] = [];
+        resMult = [];
         previousRes[i] = [];
     }
 
@@ -114,7 +116,8 @@ function handleButtonClick() {
             if (step[j] < 8){
                 cellIndex = step[j]+1;
                 previousRes[j] = printBinaryRes(resToString(res[j]));
-                res[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j]);
+                res[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j], 1);
+                resMult[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j], 2);
                 if (step[j] == 0){
                     previousRes[j] = "0000 "+previousRes[j];
                 }
@@ -131,6 +134,7 @@ function handleButtonClick() {
                         "<br>"+"<b>B:</b> "+printBinary(resToString(boolArrB[j]))+
                         "<br>"+
                             "<b>Previous result: </b>"+previousRes[j]+"<br>"+
+                        "<b>ResMult: </b>" + printBinaryRes(resToString(resMult[j]))+"<br>"+
                         "<b>Result: </b>"+printBinaryRes(resToString(res[j]));
                 }
                 step[j]++;
@@ -145,7 +149,8 @@ function handleButtonClick() {
             if (step[j] < 8){
                 cellIndex = step[j]+1;
                 previousRes[j] = printBinaryRes(resToString(res[j]));
-                res[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j]);
+                res[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j], 1);
+                resMult[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j], 2);
                 rowIndex = j + step[j] + 1;
 
                 if (step[j] == 7){
@@ -160,6 +165,7 @@ function handleButtonClick() {
                         "<br>"+"<b>B:</b> "+printBinary(resToString(boolArrB[j]))+
                         "<br>"+
                         "<b>Previous result: </b>"+previousRes[j]+"<br>"+
+                        "<b>ResMult: </b>" + printBinaryRes(resToString(resMult[j]))+"<br>"+
                         "<b>Result: </b>"+printBinaryRes(resToString(res[j]));
                 }
                 step[j]++;
