@@ -98,7 +98,6 @@ function handleButtonClick() {
 
     for (var elemIndex = 0; elemIndex < m; elemIndex++){
 
-
         time+=t;
 
         if (elemIndex < m-1 && step[elemIndex] == 0){
@@ -127,6 +126,7 @@ function handleButtonClick() {
                     var resCell = table.rows[rowIndex-1].cells[cellIndex];
                     resCell.innerHTML = "<b>A:</b> "+binaryToDecimal(resToString(boolArrA[j]))+
                         "<br>"+"<b>B:</b> "+binaryToDecimal(resToString(boolArrB[j]))+
+                        "<b>ResMult: </b>" + printBinaryRes(resToString(resMult[j]))+"<br>"+
                         "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j]));
                 } else {
                     var resCell = table.rows[rowIndex].cells[cellIndex];
