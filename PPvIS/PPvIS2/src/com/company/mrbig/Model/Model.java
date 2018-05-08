@@ -20,8 +20,14 @@ public class Model implements TableModel {
     private AbstractList<Student> students = new ArrayList<Student>();
     private Student readStudent = new Student();
 
-    public Model(String fileName) throws ParserConfigurationException, SAXException {
+    public Model(String fileName) throws IOException, SAXException, ParserConfigurationException {
         this.fileName = fileName;
+        readFile();
+    }
+
+    public Model() throws IOException, SAXException, ParserConfigurationException {
+        this.fileName = "students.xml";
+        readFile();
     }
 
     public void readFile() throws ParserConfigurationException, SAXException, IOException {
@@ -67,9 +73,12 @@ public class Model implements TableModel {
 
             public void endElement(String uri, String localName,
                                    String qName) throws SAXException {
-                double onePersonSquare = readStudent.getLivingSquare() / readStudent.getFamilySize();
-                readStudent.setOnePersonSquare(onePersonSquare);
-                students.add(readStudent);
+                if (qName.equalsIgnoreCase("PERSON")) {
+                    double onePersonSquare = readStudent.getLivingSquare() / readStudent.getFamilySize();
+                    readStudent.setOnePersonSquare(onePersonSquare);
+                    students.add(readStudent);
+                    readStudent = new Student();
+                }
             }
 
             public void characters(char ch[], int start, int length) throws SAXException {
@@ -110,7 +119,7 @@ public class Model implements TableModel {
             if (fileName.trim().isEmpty()) {
                 saxParser.parse(fileName, handler);
             } else {
-                saxParser.parse("/home/mrbig/Универ/students.xml", handler);
+                saxParser.parse(fileName, handler);
             }
     }
 
@@ -135,7 +144,7 @@ public class Model implements TableModel {
             return double.class;
         if (columnIndex == 4)
             return double.class;
-        return Object.class;
+        return null;
     }
 
     public int getColumnCount() {
@@ -183,7 +192,6 @@ public class Model implements TableModel {
     public boolean isCellEditable(int rowIndex, int columnIndex) {
         return false;
     }
-
     public void setValueAt(Object value, int rowIndex, int columnIndex) {
 
     }
