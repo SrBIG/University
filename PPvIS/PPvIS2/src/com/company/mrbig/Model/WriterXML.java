@@ -29,7 +29,6 @@ public class WriterXML {
 
     public void write() throws TransformerException {
         if (file != null && students != null) {
-
             Element students = document.createElement("students");
             for (Student studIter : this.students) {
                 Element person = document.createElement("person");

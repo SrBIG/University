@@ -112,7 +112,6 @@ function handleButtonClick() {
         }
 
         for (var j = elemIndex; j >= 0; j--){
-            alert(res[j].resSumm + j);
             if (step[j] < 8){
                 cellIndex = step[j]+1;
                 previousRes[j] = printBinaryRes(resToString(res[j]));
@@ -159,7 +158,7 @@ function handleButtonClick() {
                     var resCell = table.rows[rowIndex].cells[cellIndex];
                     resCell.innerHTML = "<b>A:</b> "+binaryToDecimal(resToString(boolArrA[j]))+
                         "<br>"+"<b>B:</b> "+binaryToDecimal(resToString(boolArrB[j]))+
-                        "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j].resSumm));
+                        "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j]));
                 } else {
                     var resCell = table.rows[rowIndex].cells[cellIndex];
                     resCell.innerHTML = "<b>A:</b> "+printBinary(resToString(boolArrA[j]))+
@@ -182,7 +181,7 @@ function handleButtonClick() {
     }
 
     for (var i = 0; i < res.length; i++){
-        arrC[i] = binaryToDecimal(resToString(res[i].resSumm));
+        arrC[i] = binaryToDecimal(resToString(res[i]));
     }
 
     document.getElementById("result").value = arrC;
