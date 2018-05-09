@@ -1,9 +1,9 @@
 package com.company.mrbig.Controler;
 
-import com.company.mrbig.Model.Model;
+import com.company.mrbig.Viev.StudentTableModel;
 import com.company.mrbig.Model.Student;
 import com.company.mrbig.Model.WriterXML;
-import com.company.mrbig.Viev.Viev;
+import com.company.mrbig.Viev.MainFrame;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,14 +13,14 @@ import java.util.ArrayList;
 
 public class Controler {
     ArrayList<Student> students;
-    Model model;
-    Viev viev;
+    StudentTableModel studentTableModel;
+    MainFrame mainFrame;
     WriterXML writer;
 
     public Controler() throws ParserConfigurationException, SAXException, IOException, TransformerException {
-        model = new Model();
-        students = model.getStudents();
-        viev = new Viev(model);
+        studentTableModel = new StudentTableModel();
+        students = studentTableModel.getStudents();
+        mainFrame = new MainFrame(studentTableModel);
         writer = new WriterXML(students);
         writer.write();
     }

@@ -1,24 +1,22 @@
 package com.company.mrbig.Viev;
 
-import com.company.mrbig.Model.Model;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Viev extends JFrame {
+public class MainFrame extends JFrame {
     static int i = 0;
     JButton button = new JButton("Press");
     // Панель с горизонтальным расположением компонентов
     JPanel menu  = new JPanel();
     JPanel all = new JPanel();
 
-    public Viev(Model model) {
+    public MainFrame() {
         super("Students");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JTable table = new JTable(model);
+        JTable table = new JTable(studentTableModel);
         button.addActionListener(new PressListener());
 
         menu.setLayout(new BoxLayout(menu, BoxLayout.X_AXIS));
