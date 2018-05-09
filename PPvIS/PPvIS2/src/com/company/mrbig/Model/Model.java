@@ -17,7 +17,7 @@ import java.util.Set;
 
 public class Model implements TableModel {
     private String fileName;
-    private AbstractList<Student> students = new ArrayList<Student>();
+    private ArrayList<Student> students = new ArrayList<Student>();
     private Student readStudent = new Student();
 
     public Model(String fileName) throws IOException, SAXException, ParserConfigurationException {
@@ -26,7 +26,7 @@ public class Model implements TableModel {
     }
 
     public Model() throws IOException, SAXException, ParserConfigurationException {
-        this.fileName = "students.xml";
+        this.fileName = "studentsBUFF.xml";
         readFile();
     }
 
@@ -111,7 +111,7 @@ public class Model implements TableModel {
                     familysize = false;
                 }
                 if (livingsquare) {
-                    readStudent.setLivingSquare(Integer.parseInt(new String(ch, start, length)));
+                    readStudent.setLivingSquare(Double.parseDouble(new String(ch, start, length)));
                     livingsquare = false;
                 }
             }
@@ -162,7 +162,7 @@ public class Model implements TableModel {
             case 3:
                 return "Жилая площадь(м^2)";
             case 4:
-                return "Площадь на одного человека(м^2)";
+                return "Площадь на человека(м^2)";
         }
         return "";
     }
@@ -194,5 +194,9 @@ public class Model implements TableModel {
     }
     public void setValueAt(Object value, int rowIndex, int columnIndex) {
 
+    }
+
+    public ArrayList<Student> getStudents(){
+        return students;
     }
 }

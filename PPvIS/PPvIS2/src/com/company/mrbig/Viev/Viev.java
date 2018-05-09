@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 public class Viev extends JFrame {
     static int i = 0;
     JButton button = new JButton("Press");
+    // Панель с горизонтальным расположением компонентов
+    JPanel menu  = new JPanel();
+    JPanel all = new JPanel();
 
     public Viev(Model model) {
         super("Students");
@@ -17,12 +20,23 @@ public class Viev extends JFrame {
 
         JTable table = new JTable(model);
         button.addActionListener(new PressListener());
-        getContentPane().add(new JScrollPane(table));
+
+        menu.setLayout(new BoxLayout(menu, BoxLayout.X_AXIS));
+        all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
+
+        menu.add(button);
+
+        all.add(menu);
+        all.add(new JScrollPane(table));
+        getContentPane().add(all, "North");
+
+
         //getContentPane().add(button);
 
-        setPreferredSize(new Dimension(260, 220));
+        setPreferredSize(new Dimension(900, 400));
         pack();
         setLocationRelativeTo(null);
+        setResizable(false);
         setVisible(true);
     }
 

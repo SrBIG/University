@@ -6,11 +6,11 @@
 				<firstname>Иван</firstname>
 				<patronymic>Иванович</patronymic>
 			</name>
-			<adress>
+			<address>
 				<street>Якуба Коласа</street>
 				<home>12а</home>
 				<flat>144</flat>
-			</adress>
+			</address>
 			<familysize>4</familysize>
 			<livingsquare>72</livingsquare>
 		</person>
@@ -20,11 +20,11 @@
 				<firstname>Иван</firstname>
 				<patronymic>Иванович</patronymic>
 			</name>
-			<adress>
+			<address>
 				<street>Платонова</street>
 				<home>95</home>
 				<flat>2</flat>
-			</adress>
+			</address>
 			<familysize>6</familysize>
 			<livingsquare>192</livingsquare>
 		</person>
@@ -34,11 +34,11 @@
 				<firstname>Антон</firstname>
 				<patronymic>Витальевич</patronymic>
 			</name>
-			<adress>
+			<address>
 				<street>Платонова</street>
 				<home>95</home>
 				<flat>2</flat>
-			</adress>
+			</address>
 			<familysize>6</familysize>
 			<livingsquare>192</livingsquare>
 		</person>
