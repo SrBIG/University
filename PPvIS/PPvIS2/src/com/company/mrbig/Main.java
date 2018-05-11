@@ -17,6 +17,7 @@ public class Main {
     public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException, TransformerException {
         GeneratorDB generator = new GeneratorDB();
         WriterXML writer = new WriterXML(generator.genStudList(50));
+        writer.write();
         new MainFrame();
     }
 }

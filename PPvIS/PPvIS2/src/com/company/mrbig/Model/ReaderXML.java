@@ -4,6 +4,7 @@ import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
+import javax.swing.*;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 public class ReaderXML {
     private String file;
     private ArrayList<Student> students = new ArrayList<Student>();
-    private Student readStudent;
+    private Student readStudent = new Student();
 
     public ReaderXML(String file){
         this.file = file;
@@ -23,9 +24,16 @@ public class ReaderXML {
         this.file = "students.xml";
     }
 
-    public ArrayList<Student> read() throws ParserConfigurationException, SAXException, IOException {
+    public ArrayList<Student> read() {
         SAXParserFactory factory = SAXParserFactory.newInstance();
-        SAXParser saxParser = factory.newSAXParser();
+        SAXParser saxParser = null;
+        try {
+            saxParser = factory.newSAXParser();
+        } catch (ParserConfigurationException e) {
+            JOptionPane.showMessageDialog(null, "Что-то парсер барахлит.");
+        } catch (SAXException e) {
+            e.printStackTrace();
+        }
         DefaultHandler handler = new DefaultHandler(){
             boolean firstname = false;
             boolean secondname = false;
@@ -110,9 +118,21 @@ public class ReaderXML {
             }
         };
         if (file.trim().isEmpty()) {
-            saxParser.parse("students.xml", handler);
+            try {
+                saxParser.parse("students.xl", handler);
+            } catch (SAXException e) {
+                JOptionPane.showMessageDialog(null, "Can't open TEST file! Please, kill me.");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Can't open TEST file! Please, kill me.");
+            }
         } else {
-            saxParser.parse(file, handler);
+            try {
+                saxParser.parse(file, handler);
+            } catch (SAXException e) {
+                JOptionPane.showMessageDialog(null, "Can't open file! Open test file.");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Can't open file! Open test file.");
+            }
         }
         return students;
     }

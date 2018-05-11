@@ -1,8 +1,9 @@
 package com.company.mrbig.Model;
 
-import com.company.mrbig.Viev.StudentTableModel;
-
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 
 public class GeneratorDB {
@@ -25,8 +26,9 @@ public class GeneratorDB {
             addStud.setFamilySize(genDigital(8));
             addStud.setLivingSquare(genSquare());
             addStud.setOnePersonSquare
-                    (addStud.getLivingSquare()/addStud.getFamilySize());
+                    (Math.rint(100.0 * addStud.getLivingSquare()/addStud.getFamilySize()) / 100.0);
             students.add(addStud);
+            addStud = new Student();
         }
 
         return students;
@@ -56,6 +58,26 @@ public class GeneratorDB {
                 return "Мамцевич";
             case 10:
                 return "Шестель";
+            case 11:
+                return "Новодворский";
+            case 12:
+                return "Батуро";
+            case 13:
+                return "Градович";
+            case 14:
+                return "Васюкевич";
+            case 15:
+                return "Мицкевич";
+            case 16:
+                return "Голенков";
+            case 17:
+                return "Гикович";
+            case 18:
+                return "Вайнерович";
+            case 19:
+                return "Шпак";
+            case 20:
+                return "Кулешов";
         }
         return "Admin";
     }

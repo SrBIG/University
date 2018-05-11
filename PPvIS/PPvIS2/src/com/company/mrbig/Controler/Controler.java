@@ -1,5 +1,6 @@
 package com.company.mrbig.Controler;
 
+import com.company.mrbig.Model.ReaderXML;
 import com.company.mrbig.Viev.StudentTableModel;
 import com.company.mrbig.Model.Student;
 import com.company.mrbig.Model.WriterXML;
@@ -13,15 +14,26 @@ import java.util.ArrayList;
 
 public class Controler {
     ArrayList<Student> students;
-    StudentTableModel studentTableModel;
-    MainFrame mainFrame;
-    WriterXML writer;
+    String file;
 
-    public Controler() throws ParserConfigurationException, SAXException, IOException, TransformerException {
-        studentTableModel = new StudentTableModel();
-        students = studentTableModel.getStudents();
-        mainFrame = new MainFrame(studentTableModel);
-        writer = new WriterXML(students);
-        writer.write();
+    public Controler(String file) {
+        this.file = file;
+    }
+
+    public Controler(){
+        this.file = "students.xml";
+    }
+
+    public ArrayList<Student> getStudentsFromDB() {
+        ReaderXML reader = new ReaderXML(file);
+        students = reader.read();
+        return students;
+    }
+
+    public ArrayList<Student> getStudents(){
+        if(students == null || students.size() < 1){
+            students = getStudentsFromDB();
+        }
+        return students;
     }
 }

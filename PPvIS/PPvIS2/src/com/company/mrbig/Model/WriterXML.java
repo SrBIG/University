@@ -20,7 +20,7 @@ public class WriterXML {
 
     public WriterXML(ArrayList<Student> students) throws ParserConfigurationException {
         this.students = students;
-        this.file = "studentsBUFF.xml";
+        this.file = "students.xml";
     }
     public WriterXML(ArrayList<Student> students, String file) throws ParserConfigurationException {
         this.students = students;

@@ -6,6 +6,7 @@ import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -16,10 +17,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
-public class StudentTableModel implements TableModel {
-    private ArrayList<Student> students = new ArrayList<Student>();
+public class StudentTableModel extends AbstractTableModel {
+    private ArrayList<Student> students;
 
-    public StudentTableModel() {
+    public StudentTableModel(ArrayList<Student> students) {
+        this.students = students;
     }
 
     private Set<TableModelListener> listeners = new HashSet<TableModelListener>();
@@ -98,5 +100,9 @@ public class StudentTableModel implements TableModel {
 
     public ArrayList<Student> getStudents(){
         return students;
+    }
+
+    public void setStudents(ArrayList<Student> students){
+        this.students = students;
     }
 }
