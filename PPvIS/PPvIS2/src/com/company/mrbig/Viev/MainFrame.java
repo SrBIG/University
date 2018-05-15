@@ -2,6 +2,7 @@ package com.company.mrbig.Viev;
 
 import com.company.mrbig.Controler.Controler;
 import com.company.mrbig.Model.Student;
+import com.company.mrbig.Viev.Dialogs.DialogAddStudent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,6 +23,8 @@ public class MainFrame extends JFrame {
     JTextField inNumEntries = new JTextField(10);
     JLabel statusPage = new JLabel();
 
+    JButton addStudent = new JButton("Add student");
+
     JPanel all = new JPanel();
     JPanel menu  = new JPanel();
     JPanel status = new JPanel();
@@ -39,10 +42,11 @@ public class MainFrame extends JFrame {
         tableModel = new StudentTableModel(students);
         table = new JTable(tableModel);
 
+        addStudent.addActionListener(new AddStudentListener());
+        menu.add(addStudent);
+
         buttonNumEntries.addActionListener(new NumEntriesListener());
-
         inNumEntries.setMaximumSize(new Dimension(40,25));
-
         menu.add(inNumEntries);
         menu.add(buttonNumEntries);
 
@@ -64,6 +68,15 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
+    }
+
+    public class AddStudentListener implements ActionListener{
+
+        public void actionPerformed(ActionEvent actionEvent) {
+            DialogAddStudent dialog = new DialogAddStudent();
+            ArrayList<Student> addedStudents;
+            addedStudents = dialog.getResult();
+        }
     }
 
     private class NumEntriesListener implements ActionListener{
