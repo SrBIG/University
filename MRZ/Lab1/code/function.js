@@ -143,12 +143,11 @@ function binarySum(a, b){
 }
 
 function resToString(c){
-    //alert(c.length + "  ;  " + c);
     for (var i = 0; i < c.length; i++){
         c[i] = Number(c[i]);
         c[i] = String(c[i]);
     }
-    c = c.join(" ");
+    c = c.join("");
     //alert("c: "+c);
     return c;
 }
@@ -163,4 +162,3 @@ function binaryMultiply(a,b){
     }
     return res;
 }
-
