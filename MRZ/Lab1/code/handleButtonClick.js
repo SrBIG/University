@@ -115,7 +115,7 @@ function handleButtonClick() {
                         "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j]));
                 } else {
                     var resCell = table.rows[rowIndex].cells[cellIndex];
-                    if(step[j]%2 == 1){
+                    if(step[j]%2 == 0){
                         resCell.innerHTML = "<b>A:</b> "+printBinary(resToString(boolArrA[j]))+
                         "<br>"+"<b>B:</b> "+printBinary(resToString(boolArrB[j]))+
                         "<br>"+
