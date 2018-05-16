@@ -53,5 +53,8 @@ function pipeline(n, a, b, step, st){
         var psum = multiply1Bin(a, b[3]);
         return psum;
     }
+    if (step == 7){
+        return n;
+    }
     return n;
 }
