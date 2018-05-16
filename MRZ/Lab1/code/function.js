@@ -148,17 +148,5 @@ function resToString(c){
         c[i] = String(c[i]);
     }
     c = c.join("");
-    //alert("c: "+c);
     return c;
-}
-
-function binaryMultiply(a,b){
-    var partSum = [];
-    var res = [];
-    for (var i = 0; i < b.length; i++){
-        res = shiftLeft(res);
-        partSum = multiply1Bin(a, b[i]);
-        res = binarySum(res, partSum);
-    }
-    return res;
 }

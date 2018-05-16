@@ -96,52 +96,6 @@ function handleButtonClick() {
         previousRes[i] = [];
     }
 
-    for (var elemIndex = 0; elemIndex < m; elemIndex++){
-
-        time+=t;
-
-        if (elemIndex < m-1 && step[elemIndex] == 0){
-            rowIndex = elemIndex+1;
-            var resCell = table.rows[rowIndex].cells[0];
-            resCell.innerHTML = "A["+elemIndex+"] = "+ binaryToDecimal(resToString(boolArrA[elemIndex]))+"<br>"+
-                "B["+elemIndex+"] = "+ binaryToDecimal(resToString(boolArrB[elemIndex]))+"<br>"+"<b>Queue:</b><br>";
-            for (var k = elemIndex+1; k < m; k++){
-                resCell.innerHTML+="A["+k+"] = "+ binaryToDecimal(resToString(boolArrA[k]))+", "+
-                    "B["+k+"] = "+ binaryToDecimal(resToString(boolArrB[k]))+"<br>";
-            }
-        }
-
-        for (var j = elemIndex; j >= 0; j--){
-            if (step[j] < 8){
-                cellIndex = step[j]+1;
-                previousRes[j] = printBinaryRes(resToString(res[j]));
-                res[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j], 1);
-                resMult[j] = pipeline(res[j], boolArrA[j], boolArrB[j], step[j], 2);
-                if (step[j] == 0){
-                    previousRes[j] = "0000 "+previousRes[j];
-                }
-                rowIndex = j + step[j] + 1;
-
-                if (step[j] == 7){
-                    var resCell = table.rows[rowIndex-1].cells[cellIndex];
-                    resCell.innerHTML = "<b>A:</b> "+binaryToDecimal(resToString(boolArrA[j]))+
-                        "<br>"+"<b>B:</b> "+binaryToDecimal(resToString(boolArrB[j]))+
-                        "<b>Result multiply: </b>" + printBinaryRes(resToString(resMult[j]))+"<br>"+
-                        "<br>"+"<b>Result: </b>"+binaryToDecimal(resToString(res[j]));
-                } else {
-                    var resCell = table.rows[rowIndex].cells[cellIndex];
-                    resCell.innerHTML = "<b>A:</b> "+printBinary(resToString(boolArrA[j]))+
-                        "<br>"+"<b>B:</b> "+printBinary(resToString(boolArrB[j]))+
-                        "<br>"+
-                            "<b>Previous result: </b>"+previousRes[j]+"<br>"+
-                        "<b>Result multiply: </b>" + printBinaryRes(resToString(resMult[j]))+"<br>"+
-                        "<b>Result: </b>"+printBinaryRes(resToString(res[j]));
-                }
-                step[j]++;
-            }
-        }
-    }
-
     while (step[m-1] < 9){
         time+=t;
 
