@@ -139,7 +139,6 @@ function handleButtonClick() {
         var resCell = table.rows[rowIndex].cells[0];
         timeOutput +=t;
         resCell.innerHTML += "<br><b>Time:</b> "+timeOutput;
-
     }
 
     for (var i = 0; i < res.length; i++){
