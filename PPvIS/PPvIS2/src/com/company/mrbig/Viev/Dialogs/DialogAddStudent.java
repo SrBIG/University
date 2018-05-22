@@ -1,5 +1,6 @@
 package com.company.mrbig.Viev.Dialogs;
 
+import com.company.mrbig.Controler.Controler;
 import com.company.mrbig.Model.Student;
 import com.company.mrbig.Viev.MainFrame;
 
@@ -10,8 +11,12 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class DialogAddStudent extends JDialog {
-    Student addStud;
+    Controler controler;
+
     ArrayList<Student> students = new ArrayList<Student>();
+
+    Dimension dimension = new Dimension(500,35);
+    Dimension minDimension = new Dimension(10, 30);
 
     JTextField firstname = new JTextField();
     JTextField secondname = new JTextField();
@@ -22,38 +27,48 @@ public class DialogAddStudent extends JDialog {
     JTextField familySize = new JTextField();
     JTextField livingSqr = new JTextField();
 
-    JButton butAddStudent = new JButton();
-    JButton butExit = new JButton();
+    JButton butAddStudent = new JButton("Add");
+    JButton butExit = new JButton("Exit");
 
+    JPanel info = new JPanel();
     JPanel buttons = new JPanel();
 
-    public DialogAddStudent(){
+    public DialogAddStudent(Controler controler){
+        this.controler = controler;
         this.setName("Add student");
         this.setModal(true);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(new JLabel("Firstname: "));
-        add(firstname);
-        add(new JLabel("Secondname: "));
-        add(secondname);
-        add(new JLabel("Patronymic: "));
-        add(patronymic);
-        add(new JLabel("Street: "));
-        add(street);
-        add(new JLabel("Number of home: "));
-        add(home);
-        add(new JLabel("Number of flat: "));
-        add(flat);
-        add(new JLabel("Family size: "));
-        add(familySize);
-        add(new JLabel("Livings square: "));
-        add(livingSqr);
+        setDimension();
+        info.setLayout(new BoxLayout(info, BoxLayout.Y_AXIS));
+        info.add(new JLabel("Firstname: "));
+        info.add(firstname);
+        info.add(new JLabel("Secondname: "));
+        info.add(secondname);
+        info.add(new JLabel("Patronymic: "));
+        info.add(patronymic);
+        info.add(new JLabel("Street: "));
+        info.add(street);
+        info.add(new JLabel("Number of home: "));
+        info.add(home);
+        info.add(new JLabel("Number of flat: "));
+        info.add(flat);
+        info.add(new JLabel("Family size: "));
+        info.add(familySize);
+        info.add(new JLabel("Livings square: "));
+        info.add(livingSqr);
 
         butAddStudent.addActionListener(new AddListener());
         butExit.addActionListener(new ExitListener());
-        add(butAddStudent, BorderLayout.SOUTH);
+        buttons.add(butAddStudent);
+        buttons.add(butExit);
+
+        add(info, BorderLayout.CENTER);
+        add(buttons, BorderLayout.SOUTH);
+        setSize(250, 500);
+        setVisible(true);
     }
 
     private class AddListener implements ActionListener{
+        Student addStud;
 
         public void actionPerformed(ActionEvent actionEvent) {
             addStud = new Student();
@@ -102,7 +117,7 @@ public class DialogAddStudent extends JDialog {
                     addStud.getLivingSquare()/addStud.getFamilySize()
             );
 
-            students.add(addStud);
+            controler.addStudent(addStud);
             addStud = null;
 
             firstname.setText("");
@@ -123,7 +138,23 @@ public class DialogAddStudent extends JDialog {
         }
     }
 
-    public ArrayList<Student> getResult(){
-        return students;
+    private void setDimension(){
+        firstname.setMaximumSize(dimension);
+        secondname.setMaximumSize(dimension);
+        patronymic.setMaximumSize(dimension);
+        street.setMaximumSize(dimension);
+        home.setMaximumSize(dimension);
+        flat.setMaximumSize(dimension);
+        familySize.setMaximumSize(dimension);
+        livingSqr.setMaximumSize(dimension);
+
+        firstname.setPreferredSize(minDimension);
+        secondname.setPreferredSize(minDimension);
+        patronymic.setPreferredSize(minDimension);
+        street.setPreferredSize(minDimension);
+        home.setPreferredSize(minDimension);
+        flat.setPreferredSize(minDimension);
+        familySize.setPreferredSize(minDimension);
+        livingSqr.setPreferredSize(minDimension);
     }
 }

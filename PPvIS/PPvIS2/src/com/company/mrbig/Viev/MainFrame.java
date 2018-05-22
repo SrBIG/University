@@ -18,8 +18,8 @@ public class MainFrame extends JFrame {
     JTable table;
     JButton buttonNumEntries = new JButton("Press");
 
-    JButton leftPage = new JButton("<");
-    JButton rightPage = new JButton(">");
+    JButton toLeftPage = new JButton("<");
+    JButton toRightPage = new JButton(">");
     JTextField inNumEntries = new JTextField(10);
     JLabel statusPage = new JLabel();
 
@@ -50,12 +50,12 @@ public class MainFrame extends JFrame {
         menu.add(inNumEntries);
         menu.add(buttonNumEntries);
 
-        leftPage.addActionListener(new ToLeftPage());
-        rightPage.addActionListener(new ToRightPage());
+        toLeftPage.addActionListener(new ToLeftPage());
+        toRightPage.addActionListener(new ToRightPage());
         statusPage.setText("1 - " + students.size());
-        status.add(leftPage);
+        status.add(toLeftPage);
         status.add(statusPage);
-        status.add(rightPage);
+        status.add(toRightPage);
 
         all.add(menu);
         all.add(table);
@@ -73,9 +73,10 @@ public class MainFrame extends JFrame {
     public class AddStudentListener implements ActionListener{
 
         public void actionPerformed(ActionEvent actionEvent) {
-            DialogAddStudent dialog = new DialogAddStudent();
-            ArrayList<Student> addedStudents;
-            addedStudents = dialog.getResult();
+            new DialogAddStudent(controler);
+            tableModel.setStudents(controler.getStudents());
+            statusPage.setText("  1 - " + controler.getStudents().size() + "  ");
+            getContentPane().repaint();
         }
     }
 
@@ -93,7 +94,7 @@ public class MainFrame extends JFrame {
             }
             students = new ArrayList<Student>(controler.getStudents().subList(0,numEntry));
             tableModel.setStudents(students);
-            statusPage.setText("1 - " + numEntry + " from " + controler.getStudents().size());
+            statusPage.setText("  1 - " + numEntry + " from " + controler.getStudents().size() + "  ");
             getContentPane().repaint();
         }
     }
@@ -104,7 +105,14 @@ public class MainFrame extends JFrame {
             Student lastOnPage = students.get(students.size() - 1);
             int numFirstInDB = controler.getStudents().indexOf(firstOnPage);
             int numLastInDB = controler.getStudents().indexOf(lastOnPage);
-            int numEntry = Integer.parseInt(inNumEntries.getText());
+
+            int numEntry;
+            if(inNumEntries.getText().isEmpty()){
+                numEntry = students.size();
+            } else {
+                numEntry = Integer.parseInt(inNumEntries.getText());
+            }
+
             if(numFirstInDB == 0){
                 return;
             }
@@ -138,7 +146,14 @@ public class MainFrame extends JFrame {
             Student lastOnPage = students.get(students.size() - 1);
             int numFirstInDB = controler.getStudents().indexOf(firstOnPage);
             int numLastInDB = controler.getStudents().indexOf(lastOnPage);
-            int numEntry = Integer.parseInt(inNumEntries.getText());
+
+            int numEntry;
+            if(inNumEntries.getText().isEmpty()){
+                numEntry = students.size();
+            } else {
+                numEntry = Integer.parseInt(inNumEntries.getText());
+            }
+
             if(numLastInDB == controler.getStudents().size() - 1){
                 return;
             }

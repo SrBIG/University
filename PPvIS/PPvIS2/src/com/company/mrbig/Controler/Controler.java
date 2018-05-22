@@ -36,4 +36,8 @@ public class Controler {
         }
         return students;
     }
+
+    public void addStudent(Student addStudent){
+        students.add(addStudent);
+    }
 }
