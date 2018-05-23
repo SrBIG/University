@@ -13,8 +13,6 @@ import java.util.ArrayList;
 public class DialogAddStudent extends JDialog {
     Controler controler;
 
-    ArrayList<Student> students = new ArrayList<Student>();
-
     Dimension dimension = new Dimension(500,35);
     Dimension minDimension = new Dimension(10, 30);
 

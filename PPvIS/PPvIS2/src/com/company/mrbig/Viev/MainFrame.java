@@ -3,6 +3,7 @@ package com.company.mrbig.Viev;
 import com.company.mrbig.Controler.Controler;
 import com.company.mrbig.Model.Student;
 import com.company.mrbig.Viev.Dialogs.DialogAddStudent;
+import com.company.mrbig.Viev.Dialogs.DialogFindStudent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,7 +24,8 @@ public class MainFrame extends JFrame {
     JTextField inNumEntries = new JTextField(10);
     JLabel statusPage = new JLabel();
 
-    JButton addStudent = new JButton("Add student");
+    JButton addStudent = new JButton("Add");
+    JButton findStudent = new JButton("Find");
 
     JPanel all = new JPanel();
     JPanel menu  = new JPanel();
@@ -44,6 +46,8 @@ public class MainFrame extends JFrame {
 
         addStudent.addActionListener(new AddStudentListener());
         menu.add(addStudent);
+        findStudent.addActionListener(new FindStudentListener());
+        menu.add(findStudent);
 
         buttonNumEntries.addActionListener(new NumEntriesListener());
         inNumEntries.setMaximumSize(new Dimension(40,25));
@@ -71,12 +75,18 @@ public class MainFrame extends JFrame {
     }
 
     public class AddStudentListener implements ActionListener{
-
         public void actionPerformed(ActionEvent actionEvent) {
             new DialogAddStudent(controler);
             tableModel.setStudents(controler.getStudents());
             statusPage.setText("  1 - " + controler.getStudents().size() + "  ");
             getContentPane().repaint();
+        }
+    }
+
+    public class FindStudentListener implements ActionListener{
+        public void actionPerformed(ActionEvent actionEvent) {
+            DialogFindStudent find = new DialogFindStudent(controler);
+           // students =
         }
     }
 
