@@ -2,6 +2,8 @@ package com.company.mrbig.Viev.Dialogs;
 
 import com.company.mrbig.Controler.Controler;
 import com.company.mrbig.Model.Student;
+import com.company.mrbig.Viev.Display;
+import com.company.mrbig.Viev.StudentTableModel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 public class DialogFindStudent extends JDialog{
     Controler controler;
     ArrayList<Student> students;
+    StudentTableModel tableModel;
+    Display display;
 
     JCheckBox familySizeCB = new JCheckBox("Размер семьи");
     JCheckBox secondnameCB = new JCheckBox("Фамилия");
@@ -31,23 +35,30 @@ public class DialogFindStudent extends JDialog{
     JPanel searchFields = new JPanel();
     JPanel checkBox = new JPanel();
     JPanel areaForPerson = new JPanel();
+    JPanel all = new JPanel();
 
     public DialogFindStudent(Controler controler){
         this.controler = controler;
         this.students = controler.getStudents();
+        tableModel  = new StudentTableModel(students);
+        display = new Display(tableModel, controler);
         setName("Search for students");
         setModal(true);
+        getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 
         createChoiceBox();
         createSearchFields();
 
         searchStudent.addActionListener(new SearchListener());
 
-        add(choiceSearch, BorderLayout.NORTH);
-        add(searchFields, BorderLayout.CENTER);
-        add(searchStudent, BorderLayout.SOUTH);
+        all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
+        all.add(choiceSearch);
+        all.add(searchFields);
+        all.add(searchStudent);
+        add(all);
+        add(new JScrollPane(display), BorderLayout.CENTER);
 
-        setSize(300, 400);
+        setSize(410, 600);
         setVisible(true);
     }
 
@@ -121,13 +132,19 @@ public class DialogFindStudent extends JDialog{
         searchFields.add(areaForPerson);
     }
 
-    class SearchListener implements ActionListener{
+    protected class SearchListener implements ActionListener{
         String secondname;
         int familySize = -1;
         double livingSquare = -1;
         double onePersonSquareMIN = -1;
         double onePersonSquareMAX = -1;
         public void actionPerformed(ActionEvent actionEvent) {
+            checkParametr();
+            search();
+            showResult();
+        }
+
+        protected void checkParametr(){
             if(familySizeCB.isSelected() && sFamilySize.getText().trim().isEmpty() == false){
                 familySize = Integer.parseInt(sFamilySize.getText());
             }
@@ -142,16 +159,9 @@ public class DialogFindStudent extends JDialog{
                 onePersonSquareMIN = Double.parseDouble(sOnePersonSquareMIN.getText());
                 onePersonSquareMAX = Double.parseDouble(sOnePersonSquareMAX.getText());
             }
-            search();
         }
 
-        //Iterator<Integer> iter = list.iterator();
-        //while (iter.hasNext()) {
-        //    if (iter.next() % 2 == 0)
-        //        iter.remove();
-        //}
-
-        private void search() {
+        protected void search() {
             if (familySize != -1) {
                 students.removeIf(student -> student.getFamilySize() != familySize);
             }
@@ -166,9 +176,10 @@ public class DialogFindStudent extends JDialog{
                 students.removeIf(student -> student.getOnePersonSquare() > onePersonSquareMAX);
             }
         }
-    }
-    public ArrayList<Student> showResult(){
-        return students;
+        protected void showResult(){
+            tableModel.setStudents(students);
+            display.refresh();
+        }
     }
 }
 
