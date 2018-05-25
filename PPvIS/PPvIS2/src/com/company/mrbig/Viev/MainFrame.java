@@ -86,7 +86,9 @@ public class MainFrame extends JFrame {
     public class FindStudentListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             DialogFindStudent find = new DialogFindStudent(controler);
-           // students =
+            students = find.showResult();
+            tableModel.setStudents(students);
+            getContentPane().repaint();
         }
     }
 

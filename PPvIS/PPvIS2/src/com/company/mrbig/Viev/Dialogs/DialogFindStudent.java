@@ -12,6 +12,8 @@ import java.util.ArrayList;
 
 public class DialogFindStudent extends JDialog{
     Controler controler;
+    ArrayList<Student> students;
+
     JCheckBox familySizeCB = new JCheckBox("Размер семьи");
     JCheckBox secondnameCB = new JCheckBox("Фамилия");
     JCheckBox livingSquareCB = new JCheckBox("Жилая площадь");
@@ -32,6 +34,7 @@ public class DialogFindStudent extends JDialog{
 
     public DialogFindStudent(Controler controler){
         this.controler = controler;
+        this.students = controler.getStudents();
         setName("Search for students");
         setModal(true);
 
@@ -119,7 +122,6 @@ public class DialogFindStudent extends JDialog{
     }
 
     class SearchListener implements ActionListener{
-        ArrayList<Student> students = controler.getStudents();
         String secondname;
         int familySize = -1;
         double livingSquare = -1;
@@ -140,32 +142,33 @@ public class DialogFindStudent extends JDialog{
                 onePersonSquareMIN = Double.parseDouble(sOnePersonSquareMIN.getText());
                 onePersonSquareMAX = Double.parseDouble(sOnePersonSquareMAX.getText());
             }
-
             search();
         }
 
-        private void search(){
-            for(Student student : students){
-                if(familySize != -1 && student.getFamilySize() != familySize){
-                    students.remove(student);
-                }
-                if(secondname != null && student.getSecondname() != secondname){
-                    students.remove(student);
-                }
-                if(livingSquare != -1 && student.getLivingSquare() !=livingSquare){
-                    students.remove(student);
-                }
-                if(onePersonSquareMIN != -1 && onePersonSquareMAX != -1){
-                    if(student.getOnePersonSquare() > onePersonSquareMAX || student.getOnePersonSquare() <onePersonSquareMIN){
-                        students.remove(student);
-                    }
-                }
+        //Iterator<Integer> iter = list.iterator();
+        //while (iter.hasNext()) {
+        //    if (iter.next() % 2 == 0)
+        //        iter.remove();
+        //}
+
+        private void search() {
+            if (familySize != -1) {
+                students.removeIf(student -> student.getFamilySize() != familySize);
+            }
+            if (secondname != null) {
+                students.removeIf(student -> student.getSecondname() != secondname);
+            }
+            if (livingSquare != -1.0) {
+                students.removeIf(student -> student.getLivingSquare() != livingSquare);
+            }
+            if (onePersonSquareMIN != -1.0 && onePersonSquareMAX != -1.0) {
+                students.removeIf(student -> student.getOnePersonSquare() < onePersonSquareMIN);
+                students.removeIf(student -> student.getOnePersonSquare() > onePersonSquareMAX);
             }
         }
-
-        public ArrayList<Student> showResult(){
-            return students;
-        }
+    }
+    public ArrayList<Student> showResult(){
+        return students;
     }
 }
 
