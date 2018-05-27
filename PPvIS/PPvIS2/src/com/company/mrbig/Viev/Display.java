@@ -45,7 +45,7 @@ public class Display extends JPanel{
 
         toLeftPage.addActionListener(new ToLeftPage());
         toRightPage.addActionListener(new ToRightPage());
-        statusPage.setText("1 - " + students.size());
+        statusPage.setText("  1 - " + students.size() + "  ");
         status.add(toLeftPage);
         status.add(statusPage);
         status.add(toRightPage);
@@ -66,6 +66,10 @@ public class Display extends JPanel{
                 JOptionPane.showMessageDialog(null,"Please, enter the correct value.");
                 return;
             }
+            if(numEntry > controler.getStudents().size()) {
+                numEntry = controler.getStudents().size();
+            }
+            students = new ArrayList<Student>(controler.getStudents().subList(0,numEntry));
             refresh();
         }
     }
@@ -151,8 +155,9 @@ public class Display extends JPanel{
         if(numEntry > controler.getStudents().size()){
             numEntry = controler.getStudents().size();
         }
-        students = new ArrayList<Student>(controler.getStudents().subList(0,numEntry));
-        //tableModel
+        if(tableModel.getStudents().size() > controler.getStudents().size()){
+            tableModel.setStudents(controler.getStudents());
+        }
         tableModel.setStudents(students);
         statusPage.setText("  1 - " + numEntry + " from " + controler.getStudents().size() + "  ");
         repaint();

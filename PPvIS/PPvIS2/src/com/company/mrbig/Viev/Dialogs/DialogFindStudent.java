@@ -36,25 +36,32 @@ public class DialogFindStudent extends JDialog{
     JPanel checkBox = new JPanel();
     JPanel areaForPerson = new JPanel();
     JPanel all = new JPanel();
+    JPanel action = new JPanel();
 
     public DialogFindStudent(Controler controler){
         this.controler = controler;
         this.students = controler.getStudents();
         tableModel  = new StudentTableModel(students);
         display = new Display(tableModel, controler);
-        setName("Search for students");
+
         setModal(true);
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-
         createChoiceBox();
         createSearchFields();
-
         searchStudent.addActionListener(new SearchListener());
+        action.add(searchStudent);
 
         all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
+
+        paintComponent();
+    }
+
+    protected void paintComponent(){
+        setName("Search for students");
+
         all.add(choiceSearch);
         all.add(searchFields);
-        all.add(searchStudent);
+        all.add(action);
         add(all);
         add(new JScrollPane(display), BorderLayout.CENTER);
 
@@ -62,7 +69,7 @@ public class DialogFindStudent extends JDialog{
         setVisible(true);
     }
 
-    private void createChoiceBox(){
+    protected void createChoiceBox(){
         choiceSearch.setLayout(new BoxLayout(choiceSearch, BoxLayout.Y_AXIS));
         choiceSearch.setAlignmentX(Component.LEFT_ALIGNMENT);
         choiceSearch.add(new JLabel("Choose search criteria:"));
@@ -106,7 +113,7 @@ public class DialogFindStudent extends JDialog{
         choiceSearch.add(checkBox);
     }
 
-    private void createSearchFields(){
+    protected void createSearchFields(){
         Dimension dimension = new Dimension(500,35);
         Dimension dim = new Dimension(100, 35);
         sFamilySize.setMaximumSize(dimension);
@@ -114,6 +121,12 @@ public class DialogFindStudent extends JDialog{
         sLivingSquare.setMaximumSize(dimension);
         sOnePersonSquareMIN.setMaximumSize(dim);
         sOnePersonSquareMAX.setMaximumSize(dim);
+
+        sFamilySize.setEditable(false);
+        sSecondname.setEditable(false);
+        sLivingSquare.setEditable(false);
+        sOnePersonSquareMIN.setEditable(false);
+        sOnePersonSquareMAX.setEditable(false);
 
         searchFields.setLayout(new BoxLayout(searchFields, BoxLayout.Y_AXIS));
         searchFields.add(new JLabel("Family size"));
@@ -175,9 +188,11 @@ public class DialogFindStudent extends JDialog{
                 students.removeIf(student -> student.getOnePersonSquare() < onePersonSquareMIN);
                 students.removeIf(student -> student.getOnePersonSquare() > onePersonSquareMAX);
             }
+            //System.out.println("Количество студентов всегоS: " + students.size());
         }
         protected void showResult(){
-            tableModel.setStudents(students);
+            //tableModel.setStudents(students);
+            System.out.println("Количество студентов всего: " + students.size());
             display.refresh();
         }
     }

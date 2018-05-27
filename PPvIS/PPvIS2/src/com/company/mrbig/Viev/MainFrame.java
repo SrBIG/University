@@ -59,7 +59,6 @@ public class MainFrame extends JFrame {
     public class AddStudentListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             new DialogAddStudent(controler);
-            //statusPage.setText("  1 - " + controler.getStudents().size() + "  ");
             display.refresh();
         }
     }
@@ -67,12 +66,14 @@ public class MainFrame extends JFrame {
     public class FindStudentListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             new DialogFindStudent(controler);
+            display.refresh();
         }
     }
 
     public class DeleteStudentListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             new DialogDeleteStudent(controler);
+            display.refresh();
         }
     }
 }

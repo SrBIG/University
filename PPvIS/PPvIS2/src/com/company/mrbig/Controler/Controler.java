@@ -13,15 +13,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class Controler {
-    ArrayList<Student> students;
-    String file;
+    private ArrayList<Student> students;
+    private String file = "students.xml";
 
-    public Controler(String file) {
-        this.file = file;
+    public Controler(ArrayList<Student> students) {
+        this.students = students;
     }
 
     public Controler(){
-        this.file = "students.xml";
     }
 
     public ArrayList<Student> getStudentsFromDB() {
@@ -34,10 +33,15 @@ public class Controler {
         if(students == null || students.size() < 1){
             students = getStudentsFromDB();
         }
-        return students;
+        return new ArrayList<>(students);
     }
 
     public void addStudent(Student addStudent){
         students.add(addStudent);
+    }
+
+    public void deleteStudents(ArrayList<Student> delStudent){
+        for(Student iterStud : delStudent)
+            students.removeIf(student -> student == iterStud);
     }
 }
