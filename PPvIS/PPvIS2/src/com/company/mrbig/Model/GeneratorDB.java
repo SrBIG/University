@@ -7,13 +7,11 @@ import java.util.Date;
 import java.util.Random;
 
 public class GeneratorDB {
-    private ArrayList<Student> students = new ArrayList<Student>();
-
     public GeneratorDB() {
     }
 
     public ArrayList<Student> genStudList(int count){
-        ArrayList<Student> students = new ArrayList<Student>();
+        ArrayList<Student> students = new ArrayList<>();
         Student addStud = new Student();
 
         for(int number = 0; number < count; number++){

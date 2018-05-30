@@ -155,6 +155,7 @@ public class DialogFindStudent extends JDialog{
             checkParametr();
             search();
             showResult();
+            students = controler.getStudents();
         }
 
         protected void checkParametr(){
