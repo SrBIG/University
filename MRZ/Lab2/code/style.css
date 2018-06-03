@@ -1,0 +1,67 @@
+body {
+    font-family: monospace;
+    font-size: 20px;
+}
+
+.name {
+    text-align: center;
+}
+
+.optionButton {
+    margin-left: 160px;
+    margin-top: 20px;
+}
+
+.label {
+    margin-right: 5px;
+}
+
+.compareTimeLabel {
+    margin-right: 17px;
+    margin-left: 20px;
+}
+
+.sumTimeLabel {
+    margin-right: 101px;
+    margin-left: 20px;
+}
+
+.compositTimeLabel {
+    margin-left: 20px;
+}
+
+button {
+    font-size: 20px;
+    background-color: #7da8ed;
+    border: 2px;
+    border-style: inset;
+    border-color: blue;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+table {
+    font-family: sans-serif;
+    font-size: 20px;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    border-color: white;
+}
+
+tr, td {
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    padding: 10px 20px;
+    font-size: 20px;
+}
+
+.nameMatrix {
+    font-size: 20px;
+    font-weight: bold;
+}
