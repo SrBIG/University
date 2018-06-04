@@ -155,12 +155,12 @@ function cMatrix() {
 }
 
 function findCij(i, j) {
-
     var Cij = 0;
-    if(compare(i, j) == 1) {
-        Cij = compositionDkij(i, j);
+    if(compare(i, j) == 0) {
+    	Cij = sumDkij(i, j);
+        
     } else {
-        Cij = sumDkij(i, j);
+        Cij = multiplyDkij(i, j);
     }
     return Cij;
 }
@@ -171,9 +171,8 @@ function compare(i, j) {
         comparisonAmount++;
         L += 2 * comparisonTime;
         totalRang += 2;
-        if(G[x][i] < H[j][x]) {
-            
-            return 1;
+        if(G[x][i] > H[j][x]) { 
+            return 0;
         }
     }
     return 0;
@@ -192,7 +191,7 @@ function sumDkij(i, j) {
     return sum.toFixed(aftComma);
 } 
 
-function compositionDkij(i, j) {
+function multiplyDkij(i, j) {
     var composition = 1;
     for(var k = 0; k < m; k++) {
         composition = composition * D[i][j][k];
@@ -253,7 +252,7 @@ function generateTable() {
 
     tableCell = document.createElement('td');
     matrix = document.createElement('table');
-    tableCell.innerHTML = "B:";
+    tableCell.innerHTML = "<div class = 'nameMatrix'>B:</div>";
 
     for (var i = 0; i < m; i++) {
         matrixRow = document.createElement('tr');
@@ -272,7 +271,7 @@ function generateTable() {
 
     tableCell = document.createElement('td');
     matrix = document.createElement('table');
-    tableCell.innerHTML = "G:";
+    tableCell.innerHTML = "<div class = 'nameMatrix'>G:</div>";
 
     for (var i = 0; i < m; i++) {
         matrixRow = document.createElement('tr');
@@ -292,7 +291,7 @@ function generateTable() {
 
     tableCell = document.createElement('td');
     matrix = document.createElement('table');
-    tableCell.innerHTML = "H:";
+    tableCell.innerHTML = "<div class = 'nameMatrix'>H:</div>";
   
     for (var i = 0; i < q; i++) {
         matrixRow = document.createElement('tr');
@@ -311,7 +310,7 @@ function generateTable() {
 
     tableCell = document.createElement('td');
         matrix = document.createElement('table');
-        tableCell.innerHTML = "C:";
+        tableCell.innerHTML = "<div class = 'nameMatrix'>C:</div>";
         for (var i = 0; i < p; i++) {
             matrixRow = document.createElement('tr');
             for (var j = 0; j < q; j++) {
@@ -328,6 +327,7 @@ function generateTable() {
     	tableRow = document.createElement('tr');
 
         tableCell = document.createElement('td');
+        tableCell.style.textAlign = 'left';
         tableCell.innerHTML = 
         	"<b>Tn:</b> " + Tn + "<br>" +
             "<b>T1:</b> " + T1 + "<br>" +
@@ -341,6 +341,8 @@ function generateTable() {
         document.body.appendChild(table);
 }
 
+
+//////////// created by Vasilyeva/////////////////
 ////////////////////charts////////////////////////
 
 function buildCharts() {
@@ -437,8 +439,8 @@ function buildCharts() {
             vAxis: {
                 title: 'K(n,r)'
             },
-            width: 1347,
-            height: 500
+            width: 1400,
+            height: 800
 
         };
 
@@ -500,7 +502,7 @@ function buildCharts() {
                 title: 'K(n,r)'
             },
             width: 1347,
-            height: 500
+            height: 800
 
         };
 
@@ -562,7 +564,7 @@ function buildCharts() {
                 title: 'E(n,r)'
             },
             width: 1347,
-            height: 500
+            height: 800
 
         };
 
@@ -619,7 +621,7 @@ function buildCharts() {
                 title: 'E(n,r)'
             },
             width: 1347,
-            height: 500
+            height: 800
 
         };
 
@@ -681,7 +683,7 @@ function buildCharts() {
                 title: 'D(n,r)'
             },
             width: 1347,
-            height: 500
+            height: 800
 
         };
 
@@ -740,7 +742,7 @@ function buildCharts() {
                 title: 'D(n,r)'
             },
             width: 1347,
-            height: 500
+            height: 800
 
         };
 
