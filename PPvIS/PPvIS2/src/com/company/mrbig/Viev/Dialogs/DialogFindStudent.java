@@ -4,6 +4,7 @@ import com.company.mrbig.Controler.Controler;
 import com.company.mrbig.Model.Student;
 import com.company.mrbig.Viev.Display;
 import com.company.mrbig.Viev.StudentTableModel;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -52,7 +53,7 @@ public class DialogFindStudent extends JDialog{
         action.add(searchStudent);
 
         all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
-
+        setSize(700, 600);
         paintComponent();
     }
 
@@ -65,7 +66,6 @@ public class DialogFindStudent extends JDialog{
         add(all);
         add(new JScrollPane(display), BorderLayout.CENTER);
 
-        setSize(410, 600);
         setVisible(true);
     }
 
@@ -152,10 +152,10 @@ public class DialogFindStudent extends JDialog{
         double onePersonSquareMIN = -1;
         double onePersonSquareMAX = -1;
         public void actionPerformed(ActionEvent actionEvent) {
+            students = controler.getStudents();
             checkParametr();
             search();
             showResult();
-            students = controler.getStudents();
         }
 
         protected void checkParametr(){
@@ -180,7 +180,7 @@ public class DialogFindStudent extends JDialog{
                 students.removeIf(student -> student.getFamilySize() != familySize);
             }
             if (secondname != null) {
-                students.removeIf(student -> student.getSecondname() != secondname);
+                students.removeIf(student -> student.getSecondname().equals(secondname) == false);
             }
             if (livingSquare != -1.0) {
                 students.removeIf(student -> student.getLivingSquare() != livingSquare);
@@ -189,12 +189,13 @@ public class DialogFindStudent extends JDialog{
                 students.removeIf(student -> student.getOnePersonSquare() < onePersonSquareMIN);
                 students.removeIf(student -> student.getOnePersonSquare() > onePersonSquareMAX);
             }
-            //System.out.println("Количество студентов всегоS: " + students.size());
         }
         protected void showResult(){
-            //tableModel.setStudents(students);
-            System.out.println("Количество студентов всего: " + students.size());
-            display.refresh();
+            //System.out.println();
+            if(students.size() == 0){
+                JOptionPane.showMessageDialog(null, "Student(s) not found");
+            }
+            display.refresh(students);
         }
     }
 }

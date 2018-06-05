@@ -21,7 +21,7 @@ public class ReaderXML {
     }
 
     public ReaderXML(){
-        this.file = "students.xml";
+        this.file = "DB/students.xml";
     }
 
     public ArrayList<Student> read() {
@@ -119,7 +119,7 @@ public class ReaderXML {
         };
         if (file.trim().isEmpty()) {
             try {
-                saxParser.parse("students.xl", handler);
+                saxParser.parse("DB/students.xml", handler);
             } catch (SAXException e) {
                 JOptionPane.showMessageDialog(null, "Can't open TEST file! Please, kill me.");
             } catch (IOException e) {

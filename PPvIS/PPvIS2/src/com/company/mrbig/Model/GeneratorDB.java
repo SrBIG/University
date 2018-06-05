@@ -1,9 +1,6 @@
 package com.company.mrbig.Model;
 
-import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Random;
 
 public class GeneratorDB {
@@ -24,7 +21,7 @@ public class GeneratorDB {
             addStud.setFamilySize(genDigital(8));
             addStud.setLivingSquare(genSquare());
             addStud.setOnePersonSquare
-                    (Math.rint(100.0 * addStud.getLivingSquare()/addStud.getFamilySize()) / 100.0);
+                    (round(addStud.getLivingSquare()/addStud.getFamilySize()));
             students.add(addStud);
             addStud = new Student();
         }
@@ -174,5 +171,12 @@ public class GeneratorDB {
         Random randNumber = new Random();
         int rand = randNumber.nextInt(200)+50;
         return (double)rand;
+    }
+
+    private double round(double dig){
+        dig *= 100;
+        int magic = (int) Math.round(dig);
+        dig = (double)magic/100;
+        return dig;
     }
 }

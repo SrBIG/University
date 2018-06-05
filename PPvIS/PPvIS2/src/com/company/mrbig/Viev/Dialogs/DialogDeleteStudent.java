@@ -28,18 +28,22 @@ public class DialogDeleteStudent extends DialogFindStudent {
         all.add(action);
         add(all);
         add(new JScrollPane(display), BorderLayout.CENTER);
-
-        setSize(410, 600);
         setVisible(true);
     }
 
     class DeleteStudent implements ActionListener {
         public void actionPerformed(ActionEvent actionEvent) {
+            students = tableModel.getStudents();
             deleteListStudent();
             setVisible(false);
         }
         private void deleteListStudent(){
+            if(students.size() == 0){
+                JOptionPane.showMessageDialog(null, "Nothing was deleted");
+                return;
+            }
             controler.deleteStudents(students);
+            JOptionPane.showMessageDialog(null, "Deleted " + students.size() + " student(s)");
         }
     }
 }

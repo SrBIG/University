@@ -3,9 +3,11 @@ package com.company.mrbig.Model;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
+import javax.swing.*;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -13,21 +15,30 @@ import javax.xml.transform.stream.StreamResult;
 import java.util.ArrayList;
 
 public class WriterXML {
-    private Document document = DocumentBuilderFactory.newInstance()
-            .newDocumentBuilder().newDocument();
+    private Document document;
+
+    {
+        try {
+            document = DocumentBuilderFactory.newInstance()
+                        .newDocumentBuilder().newDocument();
+        } catch (ParserConfigurationException e) {
+            JOptionPane.showMessageDialog(null, "ERROR!!! Can't write in file.");
+        }
+    }
+
     private String file;
     private ArrayList<Student> students;
 
-    public WriterXML(ArrayList<Student> students) throws ParserConfigurationException {
+    public WriterXML(ArrayList<Student> students){
         this.students = students;
-        this.file = "students.xml";
+        this.file = "DB/students.xml";
     }
-    public WriterXML(ArrayList<Student> students, String file) throws ParserConfigurationException {
+    public WriterXML(ArrayList<Student> students, String file) {
         this.students = students;
         this.file = file;
     }
 
-    public void write() throws TransformerException {
+    public void write() {
         if (file != null && students != null) {
             Element students = document.createElement("students");
             for (Student studIter : this.students) {
@@ -75,10 +86,19 @@ public class WriterXML {
                 students.appendChild(person);
             }
             document.appendChild(students);
-            Transformer transformer = TransformerFactory.newInstance().newTransformer();
+            Transformer transformer = null;
+            try {
+                transformer = TransformerFactory.newInstance().newTransformer();
+            } catch (TransformerConfigurationException e) {
+                e.printStackTrace();
+            }
             DOMSource domSource = new DOMSource(document);
             StreamResult streamResult = new StreamResult(file);
-            transformer.transform(domSource, streamResult);
+            try {
+                transformer.transform(domSource, streamResult);
+            } catch (TransformerException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

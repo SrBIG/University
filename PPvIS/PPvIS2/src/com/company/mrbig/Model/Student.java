@@ -1,17 +1,17 @@
 package com.company.mrbig.Model;
 
 public class Student {
-    private String firstname; // имя студента
-    private String secondname; // фамилия студента
-    private String patronymic; // отчество студента
+    private String firstname;
+    private String secondname;
+    private String patronymic;
 
-    private String street; // улица
-    private String home; // номер дома
-    private String flat; // номер квартиры
+    private String street;
+    private String home;
+    private String flat;
 
-    private int familySize; // количество членов семьи
-    private double livingSquare; // жилое пространство на семью
-    private double onePersonSquare; // жилое пространство на одного человека
+    private int familySize;
+    private double livingSquare;
+    private double onePersonSquare;
 
     public Student (){
 

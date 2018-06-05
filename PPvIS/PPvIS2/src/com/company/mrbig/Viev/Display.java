@@ -19,6 +19,8 @@ public class Display extends JPanel{
 
     JButton toLeftPage = new JButton("<");
     JButton toRightPage = new JButton(">");
+    JButton toLastPage = new JButton("last");
+    JButton toFirstPage = new JButton("first");
     JTextField inNumEntries = new JTextField(10);
     JLabel statusPage = new JLabel();
 
@@ -36,6 +38,7 @@ public class Display extends JPanel{
 
         status.setLayout(new BoxLayout(status, BoxLayout.X_AXIS));
         table = new JTable(tableModel);
+        setSizeColumn();
 
         buttonNumEntries.addActionListener(new NumEntriesListener());
         inNumEntries.setMaximumSize(new Dimension(40,25));
@@ -45,10 +48,15 @@ public class Display extends JPanel{
 
         toLeftPage.addActionListener(new ToLeftPage());
         toRightPage.addActionListener(new ToRightPage());
+        toLastPage.addActionListener(new LastPage());
+        toFirstPage.addActionListener(new FirstPage());
+
         statusPage.setText("  1 - " + students.size() + "  ");
         status.add(toLeftPage);
         status.add(statusPage);
         status.add(toRightPage);
+        status.add(toFirstPage);
+        status.add(toLastPage);
         status.add(numEntries, BorderLayout.EAST);
 
         all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
@@ -56,6 +64,14 @@ public class Display extends JPanel{
         all.add(table);
         all.add(status);
         add(all);
+    }
+
+    private void setSizeColumn(){
+        table.getColumnModel().getColumn(0).setPreferredWidth(120);
+        table.getColumnModel().getColumn(1).setPreferredWidth(240);
+        table.getColumnModel().getColumn(2).setPreferredWidth(100);
+        table.getColumnModel().getColumn(3).setPreferredWidth(100);
+        table.getColumnModel().getColumn(4).setPreferredWidth(100);
     }
 
     private class NumEntriesListener implements ActionListener {
@@ -114,36 +130,35 @@ public class Display extends JPanel{
     }
 
     private class ToRightPage implements ActionListener{
-
         public void actionPerformed(ActionEvent actionEvent) {
             Student firstOnPage = students.get(0);
             Student lastOnPage = students.get(students.size() - 1);
             int numFirstInDB = controler.getStudents().indexOf(firstOnPage);
             int numLastInDB = controler.getStudents().indexOf(lastOnPage);
 
-            if(inNumEntries.getText().isEmpty()){
+            if (inNumEntries.getText().isEmpty()) {
                 numEntry = students.size();
             } else {
                 numEntry = Integer.parseInt(inNumEntries.getText());
             }
 
-            if(numLastInDB == controler.getStudents().size() - 1){
+            if (numLastInDB == controler.getStudents().size() - 1) {
                 return;
             }
 
             int numNewFirst = numLastInDB + 1;
             int numNewLast = numLastInDB + numEntry;
-            if(numNewLast > controler.getStudents().size()){
+            if (numNewLast > controler.getStudents().size()) {
                 numNewLast = controler.getStudents().size() - 1;
             }
 
-            if(numNewFirst == numNewLast){
+            if (numNewFirst == numNewLast) {
                 students = new ArrayList<Student>();
                 students.add(controler.getStudents().get(numNewLast));
-                statusPage.setText("  " + String.valueOf((numNewLast+1) + " from " + controler.getStudents().size()) + "  ");
+                statusPage.setText("  " + String.valueOf((numNewLast + 1) + " from " + controler.getStudents().size()) + "  ");
             } else {
-                students = new ArrayList<Student>(controler.getStudents().subList(numNewFirst, numNewLast+1));
-                statusPage.setText("  " + (numNewFirst+1) + " - " + (numNewLast+1) + " from " + controler.getStudents().size()+"  ");
+                students = new ArrayList<Student>(controler.getStudents().subList(numNewFirst, numNewLast + 1));
+                statusPage.setText("  " + (numNewFirst + 1) + " - " + (numNewLast + 1) + " from " + controler.getStudents().size() + "  ");
             }
             //tableModel
             tableModel.setStudents(students);
@@ -151,13 +166,56 @@ public class Display extends JPanel{
         }
     }
 
+    private class LastPage implements ActionListener{
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (inNumEntries.getText().isEmpty()) {
+                numEntry = students.size();
+            } else {
+                numEntry = Integer.parseInt(inNumEntries.getText());
+            }
+            ArrayList<Student> cStudent = controler.getStudents();
+            students = new ArrayList(cStudent.subList(cStudent.size() - numEntry, cStudent.size()));
+            statusPage.setText("  " + (cStudent.size() - numEntry + 1) + " - " + (cStudent.size()) +
+                    " from " + controler.getStudents().size() + "  ");
+            tableModel.setStudents(students);
+            repaint();
+        }
+    }
+
+    private class FirstPage implements ActionListener{
+        public void actionPerformed(ActionEvent actionEvent) {
+            if (inNumEntries.getText().isEmpty()) {
+                numEntry = students.size();
+            } else {
+                numEntry = Integer.parseInt(inNumEntries.getText());
+            }
+            ArrayList<Student> cStudent = controler.getStudents();
+            students = new ArrayList(cStudent.subList(0, numEntry));
+            statusPage.setText("  1" + " - " + (students.size() + 1) +
+                    " from " + controler.getStudents().size() + "  ");
+            tableModel.setStudents(students);
+            repaint();
+        }
+    }
+
     public void refresh(){
+        if(numEntry == 0) {
+            numEntry = tableModel.getStudents().size();
+        }
         if(numEntry > controler.getStudents().size()){
             numEntry = controler.getStudents().size();
         }
         if(tableModel.getStudents().size() > controler.getStudents().size()){
             tableModel.setStudents(controler.getStudents());
         }
+        tableModel.setStudents(students);
+        statusPage.setText("  1 - " + numEntry + " from " + controler.getStudents().size() + "  ");
+        repaint();
+    }
+
+    public void refresh(ArrayList<Student> students){
+        this.numEntry = students.size();
+        this.students = students;
         tableModel.setStudents(students);
         statusPage.setText("  1 - " + numEntry + " from " + controler.getStudents().size() + "  ");
         repaint();

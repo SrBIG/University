@@ -5,6 +5,7 @@ import com.company.mrbig.Model.Student;
 import com.company.mrbig.Viev.Dialogs.DialogAddStudent;
 import com.company.mrbig.Viev.Dialogs.DialogDeleteStudent;
 import com.company.mrbig.Viev.Dialogs.DialogFindStudent;
+import com.company.mrbig.Viev.Dialogs.DialogSaveStudent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,22 +14,24 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class MainFrame extends JFrame {
-    Controler controler = new Controler();
+    Controler controler;
     StudentTableModel tableModel;
     ArrayList<Student> students;
 
     JButton addStudent = new JButton("Add");
     JButton findStudent = new JButton("Find");
     JButton deleteStudent = new JButton("Delete");
+    JButton save = new JButton("Save");
 
     JPanel all = new JPanel();
     JPanel menu  = new JPanel();
 
     Display display;
 
-    public MainFrame() {
+    public MainFrame(String file) {
         super("Students");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        controler = new Controler(file);
 
         menu.setLayout(new BoxLayout(menu, BoxLayout.X_AXIS));
         all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
@@ -43,37 +46,44 @@ public class MainFrame extends JFrame {
         menu.add(findStudent);
         deleteStudent.addActionListener(new DeleteStudentListener());
         menu.add(deleteStudent);
+        save.addActionListener(new SaveListener());
+        menu.add(save);
 
         all.add(menu);
         all.add(new JScrollPane(display));
 
         getContentPane().add(all);
 
-        setPreferredSize(new Dimension(600, 400));
-        pack();
+        setSize(new Dimension(800, 400));
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
     }
 
-    public class AddStudentListener implements ActionListener{
+    class AddStudentListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             new DialogAddStudent(controler);
             display.refresh();
         }
     }
 
-    public class FindStudentListener implements ActionListener{
+    class FindStudentListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             new DialogFindStudent(controler);
             display.refresh();
         }
     }
 
-    public class DeleteStudentListener implements ActionListener{
+    class DeleteStudentListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             new DialogDeleteStudent(controler);
             display.refresh();
+        }
+    }
+
+    class SaveListener implements ActionListener{
+        public void actionPerformed(ActionEvent actionEvent) {
+            new DialogSaveStudent(controler.getStudents());
         }
     }
 }

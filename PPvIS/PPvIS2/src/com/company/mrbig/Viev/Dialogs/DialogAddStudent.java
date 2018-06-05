@@ -102,18 +102,21 @@ public class DialogAddStudent extends JDialog {
                 addStud = null;
                 return;
             }
-
-            addStud.setFirstname(firstname.getText());
-            addStud.setSecondname(secondname.getText());
-            addStud.setPatronymic(patronymic.getText());
-            addStud.setStreet(street.getText());
-            addStud.setHome(home.getText());
-            addStud.setFlat(flat.getText());
-            addStud.setFamilySize(Integer.parseInt(familySize.getText()));
-            addStud.setLivingSquare(Double.parseDouble(livingSqr.getText()));
-            addStud.setOnePersonSquare(
-                    addStud.getLivingSquare()/addStud.getFamilySize()
-            );
+            try {
+                addStud.setFirstname(firstname.getText());
+                addStud.setSecondname(secondname.getText());
+                addStud.setPatronymic(patronymic.getText());
+                addStud.setStreet(street.getText());
+                addStud.setHome(home.getText());
+                addStud.setFlat(flat.getText());
+                addStud.setFamilySize(Integer.parseInt(familySize.getText()));
+                addStud.setLivingSquare(Double.parseDouble(livingSqr.getText()));
+                addStud.setOnePersonSquare(
+                        addStud.getLivingSquare() / addStud.getFamilySize());
+            } catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Please, enter correct data");
+                return;
+            }
 
             controler.addStudent(addStud);
             addStud = null;

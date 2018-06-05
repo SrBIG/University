@@ -1,27 +1,26 @@
 package com.company.mrbig.Viev.Dialogs;
 
+import com.company.mrbig.Viev.MainFrame;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class DialogStart extends JDialog {
-    String file;
+    String fileName;
+    File file;
     JTextField inputFile = new JTextField();
-    JButton button = new JButton("Подключить");
-
-    JPanel all = new JPanel();
+    JButton button = new JButton("Connect");
 
     public DialogStart(){
         setName("Database");
-        //setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-        add(new JLabel("Input name file with DB"), BorderLayout.NORTH);
+        add(new JLabel("Enter file with DB name"), BorderLayout.NORTH);
         add(inputFile, BorderLayout.CENTER);
         button.addActionListener(new AddDBListener());
         add(button, BorderLayout.SOUTH);
 
-        setSize(300, 60);
-        pack();
+        setSize(300, 80);
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
@@ -29,9 +28,20 @@ public class DialogStart extends JDialog {
 
     private class AddDBListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
-            if(inputFile.getText().trim().isEmpty()){
-                
+            fileName = inputFile.getText().trim();
+            if(fileName.isEmpty()){
+                JOptionPane.showMessageDialog(null, "Enter file name");
+                return;
             }
+
+            fileName = "DB/" + fileName;
+            file = new File(fileName);
+            if(file.exists() == false){
+                JOptionPane.showMessageDialog(null, "File not found");
+                return;
+            }
+            setVisible(false);
+            new MainFrame(fileName);
         }
     }
 

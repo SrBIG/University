@@ -14,13 +14,15 @@ import java.util.ArrayList;
 
 public class Controler {
     private ArrayList<Student> students;
-    private String file = "students.xml";
+    private String file;
 
     public Controler(ArrayList<Student> students) {
+        this.file = "DB/students.xml";
         this.students = students;
     }
 
-    public Controler(){
+    public Controler(String file){
+        this.file = file;
     }
 
     public ArrayList<Student> getStudentsFromDB() {
