@@ -46,35 +46,35 @@ public class ReaderXML {
 
             public void startElement(String uri, String localName,String qName,
                                      Attributes attributes) {
-                if (qName.equalsIgnoreCase("FIRSTNAME")) {
+                if (qName.equalsIgnoreCase(ParserConstants.FIRSTNAME)) {
                     firstname = true;
                 }
-                if (qName.equalsIgnoreCase("SECONDNAME")) {
+                if (qName.equalsIgnoreCase(ParserConstants.SECONDNAME)) {
                     secondname = true;
                 }
-                if (qName.equalsIgnoreCase("PATRONYMIC")) {
+                if (qName.equalsIgnoreCase(ParserConstants.PATRONYMIC)) {
                     patronymic = true;
                 }
-                if (qName.equalsIgnoreCase("STREET")) {
+                if (qName.equalsIgnoreCase(ParserConstants.STREET)) {
                     street = true;
                 }
-                if (qName.equalsIgnoreCase("HOME")) {
+                if (qName.equalsIgnoreCase(ParserConstants.HOME)) {
                     home = true;
                 }
-                if (qName.equalsIgnoreCase("FLAT")) {
+                if (qName.equalsIgnoreCase(ParserConstants.FLAT)) {
                     flat = true;
                 }
-                if (qName.equalsIgnoreCase("FAMILYSIZE")) {
+                if (qName.equalsIgnoreCase(ParserConstants.FAMILYSIZE)) {
                     familysize = true;
                 }
-                if (qName.equalsIgnoreCase("LIVINGSQUARE")) {
+                if (qName.equalsIgnoreCase(ParserConstants.LIVINGSQUARE)) {
                     livingsquare = true;
                 }
             }
 
             public void endElement(String uri, String localName,
                                    String qName) {
-                if (qName.equalsIgnoreCase("PERSON")) {
+                if (qName.equalsIgnoreCase(ParserConstants.PERSON)) {
                     double onePersonSquare = readStudent.getLivingSquare() / readStudent.getFamilySize();
                     readStudent.setOnePersonSquare(onePersonSquare);
                     students.add(readStudent);

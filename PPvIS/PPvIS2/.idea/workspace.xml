@@ -15,64 +15,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="MainFrame.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/MainFrame.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
-              <folding>
-                <element signature="e#2705#2706#0" expanded="true" />
-                <element signature="e#2775#2776#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="14" column="64" selection-start-line="14" selection-start-column="64" selection-end-line="14" selection-end-column="64" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DialogAddStudent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogAddStudent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="96" column="54" lean-forward="true" selection-start-line="96" selection-start-column="54" selection-end-line="96" selection-end-column="54" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DialogStart.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogStart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret lean-forward="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="GeneratorDB.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/GeneratorDB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="116" column="22" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#genSecondname#0;class#GeneratorDB#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DialogDeleteStudent.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogDeleteStudent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
+            <state relative-caret-position="463">
+              <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#376#377#0" expanded="true" />
@@ -82,47 +29,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Display.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Display.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Display.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="217" selection-start-line="217" selection-end-line="217" />
+            <state relative-caret-position="535">
+              <caret line="211" column="51" selection-start-line="211" selection-start-column="51" selection-end-line="211" selection-end-column="51" />
               <folding>
                 <element signature="method#setSizeColumn#0;class#Display#0" />
-                <element signature="class#NumEntriesListener#0;class#Display#0" />
-                <element signature="class#ToLeftPage#0;class#Display#0" />
-                <element signature="class#LastPage#0;class#Display#0" />
-                <element signature="class#FirstPage#0;class#Display#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DialogFindStudent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogFindStudent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="226">
-              <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Student.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/Student.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
-              <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DialogSaveStudent.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogSaveStudent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
-              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#8097#8098#0" expanded="true" />
+                <element signature="e#8155#8156#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -144,6 +59,7 @@
       <find>HEAD</find>
       <find>controler.</find>
       <find>students</find>
+      <find>controler</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -155,18 +71,19 @@
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Model/Model.java" />
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/StudentTableModel.java" />
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Main.java" />
-        <option value="$PROJECT_DIR$/src/com/company/mrbig/Model/WriterXML.java" />
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogSaveStudent.java" />
-        <option value="$PROJECT_DIR$/src/com/company/mrbig/Model/ReaderXML.java" />
-        <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Display.java" />
-        <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogDeleteStudent.java" />
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogAddStudent.java" />
-        <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Model/Student.java" />
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Model/GeneratorDB.java" />
-        <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogStart.java" />
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Controler/Controler.java" />
+        <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/MainFrame.java" />
         <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogFindStudent.java" />
+        <option value="$PROJECT_DIR$/src/com/company/mrbig/Model/ParserConstants.java" />
+        <option value="$PROJECT_DIR$/src/com/company/mrbig/Model/WriterXML.java" />
+        <option value="$PROJECT_DIR$/src/com/company/mrbig/Model/ReaderXML.java" />
+        <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogStart.java" />
+        <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogDeleteStudent.java" />
+        <option value="$PROJECT_DIR$/src/com/company/mrbig/Viev/Display.java" />
       </list>
     </option>
   </component>
@@ -190,7 +107,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="AndroidView" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -242,7 +159,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="AndroidView" />
       <pane id="PackagesPane" />
     </panes>
   </component>
@@ -324,11 +241,12 @@
       <workItem from="1527585536443" duration="2935000" />
       <workItem from="1527664186219" duration="598000" />
       <workItem from="1528124986402" duration="18207000" />
+      <workItem from="1528227971459" duration="10510000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71253000" />
+    <option name="totallyTimeSpent" value="81763000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
@@ -347,51 +265,21 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info id="Capture Tool" order="6" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18867925" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18867925" />
+      <window_info anchor="right" id="Database" order="7" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.23958333" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39979124" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.24959569" />
-      <window_info anchor="right" id="Database" order="7" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32985386" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.23958333" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39979124" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32985386" />
     </layout>
-    <layout-to-restore>
-      <window_info anchor="right" id="Palette" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32985386" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Capture Analysis" order="4" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.37682673" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18867925" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.23958333" />
-      <window_info anchor="right" id="Theme Preview" order="5" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Database Changes" order="10" show_stripe_button="false" />
-      <window_info id="Image Layers" order="2" />
-      <window_info id="Designer" order="3" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="UI Designer" order="4" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39979124" />
-      <window_info anchor="right" id="Database" order="7" />
-      <window_info anchor="right" id="Palette&#9;" order="8" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
-      <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="9" show_stripe_button="false" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32985386" />
-      <window_info anchor="right" id="Maven Projects" order="6" />
-      <window_info id="Favorites" order="5" side_tool="true" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -417,7 +305,7 @@
           <option name="timeStamp" value="83" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="84" />
+      <option name="time" value="85" />
     </breakpoint-manager>
   </component>
   <component name="debuggerHistoryManager">
@@ -430,7 +318,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/Model.java" />
     <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -561,13 +448,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/javax/swing/BoxLayout.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="71" selection-start-line="71" selection-end-line="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/Student.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -614,31 +494,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="609">
           <caret line="93" lean-forward="true" selection-start-line="93" selection-end-line="93" />
-          <folding>
-            <element signature="e#3232#3233#0" expanded="true" />
-            <element signature="e#3264#3265#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Controler/Controler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="18" column="23" lean-forward="true" selection-start-line="18" selection-start-column="23" selection-end-line="18" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/ReaderXML.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="29" column="13" lean-forward="true" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/WriterXML.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="64" column="9" lean-forward="true" selection-start-line="64" selection-start-column="9" selection-end-line="64" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -663,15 +518,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogAddStudent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="96" column="54" lean-forward="true" selection-start-line="96" selection-start-column="54" selection-end-line="96" selection-end-column="54" />
+        <state relative-caret-position="1584">
+          <caret line="96" column="54" selection-start-line="96" selection-start-column="54" selection-end-line="96" selection-end-column="54" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogSaveStudent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+        <state relative-caret-position="774">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -680,59 +535,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/Student.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="106" lean-forward="true" selection-start-line="106" selection-end-line="106" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogDeleteStudent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="17" lean-forward="true" selection-start-line="11" selection-start-column="17" selection-end-line="11" selection-end-column="17" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#376#377#0" expanded="true" />
-            <element signature="e#408#409#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogStart.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/MainFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="46" column="67" lean-forward="true" selection-start-line="46" selection-start-column="67" selection-end-line="46" selection-end-column="67" />
-          <folding>
-            <element signature="e#2705#2706#0" expanded="true" />
-            <element signature="e#2775#2776#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Display.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="217" selection-start-line="217" selection-end-line="217" />
-          <folding>
-            <element signature="method#setSizeColumn#0;class#Display#0" />
-            <element signature="class#NumEntriesListener#0;class#Display#0" />
-            <element signature="class#ToLeftPage#0;class#Display#0" />
-            <element signature="class#LastPage#0;class#Display#0" />
-            <element signature="class#FirstPage#0;class#Display#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogFindStudent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="181" column="24" lean-forward="true" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
+        <state relative-caret-position="1260">
+          <caret line="106" selection-start-line="106" selection-end-line="106" />
         </state>
       </provider>
     </entry>
@@ -743,13 +547,109 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogFindStudent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="23" column="62" lean-forward="true" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar!/javax/swing/BoxLayout.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="39" />
+          <folding>
+            <element signature="e#2035#2036#0" expanded="true" />
+            <element signature="e#2090#2091#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/MainFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="36" column="54" lean-forward="true" selection-start-line="36" selection-start-column="54" selection-end-line="36" selection-end-column="54" />
+          <folding>
+            <element signature="e#2705#2706#0" expanded="true" />
+            <element signature="e#2775#2776#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Controler/Controler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="20" column="33" lean-forward="true" selection-start-line="20" selection-start-column="33" selection-end-line="20" selection-end-column="33" />
+          <folding>
+            <element signature="e#704#705#0" expanded="true" />
+            <element signature="e#736#737#0" expanded="true" />
+            <element signature="method#getStudents#0;class#Controler#0" />
+            <element signature="e#1268#1269#0" expanded="true" />
+            <element signature="e#1308#1309#0" expanded="true" />
+            <element signature="method#deleteStudents#0;class#Controler#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/GeneratorDB.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
-          <caret line="116" column="22" selection-start-line="116" selection-start-column="16" selection-end-line="116" selection-end-column="22" />
+          <caret line="116" column="35" selection-start-line="116" selection-start-column="35" selection-end-line="116" selection-end-column="35" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#genSecondname#0;class#GeneratorDB#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/ParserConstants.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="49" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/WriterXML.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1242">
+          <caret line="81" column="90" selection-start-line="81" selection-start-column="90" selection-end-line="81" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="58" column="28" selection-start-line="58" selection-start-column="28" selection-end-line="58" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Model/ReaderXML.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="48" column="68" selection-start-line="48" selection-start-column="68" selection-end-line="48" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Dialogs/DialogDeleteStudent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="463">
+          <caret line="43" column="39" selection-start-line="43" selection-start-column="39" selection-end-line="43" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#376#377#0" expanded="true" />
+            <element signature="e#408#409#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Display.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="211" column="51" selection-start-line="211" selection-start-column="51" selection-end-line="211" selection-end-column="51" />
+          <folding>
+            <element signature="method#setSizeColumn#0;class#Display#0" />
+            <element signature="e#8097#8098#0" expanded="true" />
+            <element signature="e#8155#8156#0" expanded="true" />
           </folding>
         </state>
       </provider>

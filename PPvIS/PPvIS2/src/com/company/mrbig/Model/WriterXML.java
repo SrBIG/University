@@ -40,46 +40,46 @@ public class WriterXML {
 
     public void write() {
         if (file != null && students != null) {
-            Element students = document.createElement("students");
+            Element students = document.createElement(ParserConstants.STUDENTS);
             for (Student studIter : this.students) {
-                Element person = document.createElement("person");
-                Element name = document.createElement("name");
+                Element person = document.createElement(ParserConstants.PERSON);
+                Element name = document.createElement(ParserConstants.NAME);
 
-                Element secondname = document.createElement("secondname");
+                Element secondname = document.createElement(ParserConstants.SECONDNAME);
                 secondname.setTextContent(studIter.getSecondname());
                 name.appendChild(secondname);
 
-                Element firstname = document.createElement("firstname");
+                Element firstname = document.createElement(ParserConstants.FIRSTNAME);
                 firstname.setTextContent(studIter.getFirstname());
                 name.appendChild(firstname);
 
-                Element patronymic = document.createElement("patronymic");
+                Element patronymic = document.createElement(ParserConstants.PATRONYMIC);
                 patronymic.setTextContent(studIter.getPatronymic());
                 name.appendChild(patronymic);
 
                 person.appendChild(name);
 
-                Element address = document.createElement("address");
+                Element address = document.createElement(ParserConstants.ADDRESS);
 
-                Element street = document.createElement("street");
+                Element street = document.createElement(ParserConstants.STREET);
                 street.setTextContent(studIter.getStreet());
                 address.appendChild(street);
 
-                Element home = document.createElement("home");
+                Element home = document.createElement(ParserConstants.HOME);
                 home.setTextContent(studIter.getHome());
                 address.appendChild(home);
 
-                Element flat = document.createElement("flat");
+                Element flat = document.createElement(ParserConstants.FLAT);
                 flat.setTextContent(studIter.getFlat());
                 address.appendChild(flat);
 
                 person.appendChild(address);
 
-                Element familysize = document.createElement("familysize");
+                Element familysize = document.createElement(ParserConstants.FAMILYSIZE);
                 familysize.setTextContent(String.valueOf(studIter.getFamilySize()));
                 person.appendChild(familysize);
 
-                Element livingsquare = document.createElement("livingsquare");
+                Element livingsquare = document.createElement(ParserConstants.LIVINGSQUARE);
                 livingsquare.setTextContent(String.valueOf(studIter.getLivingSquare()));
                 person.appendChild(livingsquare);
 

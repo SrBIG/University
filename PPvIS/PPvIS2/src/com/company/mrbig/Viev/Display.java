@@ -23,6 +23,7 @@ public class Display extends JPanel{
     JButton toFirstPage = new JButton("first");
     JTextField inNumEntries = new JTextField(10);
     JLabel statusPage = new JLabel();
+    JLabel numPage = new JLabel();
 
     JPanel status = new JPanel();
     JPanel numEntries = new JPanel();
@@ -51,12 +52,15 @@ public class Display extends JPanel{
         toLastPage.addActionListener(new LastPage());
         toFirstPage.addActionListener(new FirstPage());
 
-        statusPage.setText("  1 - " + students.size() + "  ");
+        statusPage.setText("   " + students.size() + "   ");
+        numPage.setText("  page: 1/1  ");
+
         status.add(toLeftPage);
         status.add(statusPage);
         status.add(toRightPage);
         status.add(toFirstPage);
         status.add(toLastPage);
+        status.add(numPage);
         status.add(numEntries, BorderLayout.EAST);
 
         all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
@@ -168,6 +172,9 @@ public class Display extends JPanel{
 
     private class LastPage implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
+            if(controler.getStudents().size() == 0){
+                return;
+            }
             if (inNumEntries.getText().isEmpty()) {
                 numEntry = students.size();
             } else {
@@ -184,6 +191,9 @@ public class Display extends JPanel{
 
     private class FirstPage implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
+            if(controler.getStudents().size() == 0){
+                return;
+            }
             if (inNumEntries.getText().isEmpty()) {
                 numEntry = students.size();
             } else {
@@ -191,11 +201,15 @@ public class Display extends JPanel{
             }
             ArrayList<Student> cStudent = controler.getStudents();
             students = new ArrayList(cStudent.subList(0, numEntry));
-            statusPage.setText("  1" + " - " + (students.size() + 1) +
+            statusPage.setText("  1" + " - " + (students.size()) +
                     " from " + controler.getStudents().size() + "  ");
             tableModel.setStudents(students);
             repaint();
         }
+    }
+
+    public void changeNumPage(){
+        numEntry = tableModel.getStudents().size();
     }
 
     public void refresh(){

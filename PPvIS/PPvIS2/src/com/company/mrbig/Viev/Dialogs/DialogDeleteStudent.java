@@ -25,14 +25,18 @@ public class DialogDeleteStudent extends DialogFindStudent {
 
         all.add(choiceSearch);
         all.add(searchFields);
-        all.add(action);
         add(all);
-        add(new JScrollPane(display), BorderLayout.CENTER);
+        add(delete, BorderLayout.SOUTH);
+        pack();
+        //add(new JScrollPane(display), BorderLayout.CENTER);
         setVisible(true);
     }
 
-    class DeleteStudent implements ActionListener {
+    class DeleteStudent extends SearchListener {
         public void actionPerformed(ActionEvent actionEvent) {
+            checkParametr();
+            search();
+            showResult();
             students = tableModel.getStudents();
             deleteListStudent();
             setVisible(false);

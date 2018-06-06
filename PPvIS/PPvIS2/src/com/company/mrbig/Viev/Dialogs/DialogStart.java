@@ -1,6 +1,8 @@
 package com.company.mrbig.Viev.Dialogs;
 
 import com.company.mrbig.Viev.MainFrame;
+import com.sun.org.apache.xml.internal.resolver.helpers.BootstrapResolver;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -9,18 +11,28 @@ import java.io.File;
 
 public class DialogStart extends JDialog {
     String fileName;
-    File file;
-    JTextField inputFile = new JTextField();
-    JButton button = new JButton("Connect");
+    JLabel info = new JLabel("Please, select action:");
+    JButton connect = new JButton("Connect");
+    JButton create = new JButton("Create new file");
+
+    JPanel actions = new JPanel();
 
     public DialogStart(){
         setName("Database");
-        add(new JLabel("Enter file with DB name"), BorderLayout.NORTH);
-        add(inputFile, BorderLayout.CENTER);
-        button.addActionListener(new AddDBListener());
-        add(button, BorderLayout.SOUTH);
+        info.setFont(new Font("Sans-serif", Font.BOLD, 18));
+        add(info, BorderLayout.NORTH);
+
+        actions.setLayout(new BoxLayout(actions, BoxLayout.X_AXIS));
+
+        connect.addActionListener(new AddDBListener());
+        add(connect, BorderLayout.SOUTH);
+        create.addActionListener(new CreateListener());
+        add(create, BorderLayout.CENTER);
+
+        //add(actions, BorderLayout.CENTER);
 
         setSize(300, 80);
+        pack();
         setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
@@ -28,20 +40,24 @@ public class DialogStart extends JDialog {
 
     private class AddDBListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
-            fileName = inputFile.getText().trim();
-            if(fileName.isEmpty()){
-                JOptionPane.showMessageDialog(null, "Enter file name");
-                return;
-            }
+            JFileChooser fileChooser = new JFileChooser();
+            int res = fileChooser.showDialog(null, "open file");
 
-            fileName = "DB/" + fileName;
-            file = new File(fileName);
-            if(file.exists() == false){
-                JOptionPane.showMessageDialog(null, "File not found");
-                return;
+            if(res == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getSelectedFile();
+                fileName = file.getPath();
             }
             setVisible(false);
             new MainFrame(fileName);
+        }
+    }
+
+    private class CreateListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            setVisible(false);
+            new MainFrame(null);
         }
     }
 

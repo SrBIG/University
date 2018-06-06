@@ -33,7 +33,11 @@ public class Controler {
 
     public ArrayList<Student> getStudents(){
         if(students == null || students.size() < 1){
-            students = getStudentsFromDB();
+            if (file == null){
+                students = new ArrayList<>();
+            } else {
+                students = getStudentsFromDB();
+            }
         }
         return new ArrayList<>(students);
     }
