@@ -46,35 +46,35 @@ public class ReaderXML {
 
             public void startElement(String uri, String localName,String qName,
                                      Attributes attributes) {
-                if (qName.equalsIgnoreCase(ParserConstants.FIRSTNAME)) {
+                if (ParserConstants.FIRSTNAME.equalsIgnoreCase(qName)) {
                     firstname = true;
                 }
-                if (qName.equalsIgnoreCase(ParserConstants.SECONDNAME)) {
+                if (ParserConstants.SECONDNAME.equalsIgnoreCase(qName)) {
                     secondname = true;
                 }
-                if (qName.equalsIgnoreCase(ParserConstants.PATRONYMIC)) {
+                if (ParserConstants.PATRONYMIC.equalsIgnoreCase(qName)) {
                     patronymic = true;
                 }
-                if (qName.equalsIgnoreCase(ParserConstants.STREET)) {
+                if (ParserConstants.STREET.equalsIgnoreCase(qName)) {
                     street = true;
                 }
-                if (qName.equalsIgnoreCase(ParserConstants.HOME)) {
+                if (ParserConstants.HOME.equalsIgnoreCase(qName)) {
                     home = true;
                 }
-                if (qName.equalsIgnoreCase(ParserConstants.FLAT)) {
+                if (ParserConstants.FLAT.equalsIgnoreCase(qName)) {
                     flat = true;
                 }
-                if (qName.equalsIgnoreCase(ParserConstants.FAMILYSIZE)) {
+                if (ParserConstants.FAMILYSIZE.equalsIgnoreCase(qName)) {
                     familysize = true;
                 }
-                if (qName.equalsIgnoreCase(ParserConstants.LIVINGSQUARE)) {
+                if (ParserConstants.LIVINGSQUARE.equalsIgnoreCase(qName)) {
                     livingsquare = true;
                 }
             }
 
             public void endElement(String uri, String localName,
                                    String qName) {
-                if (qName.equalsIgnoreCase(ParserConstants.PERSON)) {
+                if (ParserConstants.PERSON.equalsIgnoreCase(qName)) {
                     double onePersonSquare = readStudent.getLivingSquare() / readStudent.getFamilySize();
                     readStudent.setOnePersonSquare(onePersonSquare);
                     students.add(readStudent);

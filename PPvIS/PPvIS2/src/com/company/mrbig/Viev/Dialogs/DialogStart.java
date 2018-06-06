@@ -38,10 +38,10 @@ public class DialogStart extends JDialog {
         setVisible(true);
     }
 
-    private class AddDBListener implements ActionListener{
+    class AddDBListener implements ActionListener{
         public void actionPerformed(ActionEvent actionEvent) {
             JFileChooser fileChooser = new JFileChooser();
-            int res = fileChooser.showDialog(null, "open file");
+            int res = fileChooser.showDialog(null, "Open file");
 
             if(res == JFileChooser.APPROVE_OPTION){
                 File file = fileChooser.getSelectedFile();

@@ -25,10 +25,9 @@ public class Controler {
         this.file = file;
     }
 
-    public ArrayList<Student> getStudentsFromDB() {
+    public void getStudentsFromDB() {
         ReaderXML reader = new ReaderXML(file);
         students = reader.read();
-        return students;
     }
 
     public ArrayList<Student> getStudents(){
@@ -36,7 +35,7 @@ public class Controler {
             if (file == null){
                 students = new ArrayList<>();
             } else {
-                students = getStudentsFromDB();
+                getStudentsFromDB();
             }
         }
         return new ArrayList<>(students);
@@ -49,5 +48,10 @@ public class Controler {
     public void deleteStudents(ArrayList<Student> delStudent){
         for(Student iterStud : delStudent)
             students.removeIf(student -> student == iterStud);
+    }
+
+    public void setFile(String file){
+        this.file = file;
+        getStudentsFromDB();
     }
 }

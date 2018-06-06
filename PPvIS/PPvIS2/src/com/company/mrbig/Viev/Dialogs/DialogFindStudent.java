@@ -1,177 +1,79 @@
 package com.company.mrbig.Viev.Dialogs;
 
-import com.company.mrbig.Controler.Controler;
 import com.company.mrbig.Model.Student;
 import com.company.mrbig.Viev.Display;
+import com.company.mrbig.Viev.SearchComponent;
 import com.company.mrbig.Viev.StudentTableModel;
-import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 
 public class DialogFindStudent extends JDialog{
-    Controler controler;
     ArrayList<Student> students;
+    ArrayList<Student> allStudents;
     StudentTableModel tableModel;
     Display display;
-
-    JCheckBox familySizeCB = new JCheckBox("Размер семьи");
-    JCheckBox secondnameCB = new JCheckBox("Фамилия");
-    JCheckBox livingSquareCB = new JCheckBox("Жилая площадь");
-    JCheckBox onePersonSquareCB = new JCheckBox("Площадь на одного человека");
-
-    JTextField sFamilySize = new JTextField();
-    JTextField sSecondname = new JTextField();
-    JTextField sLivingSquare = new JTextField();
-    JTextField sOnePersonSquareMIN = new JTextField();
-    JTextField sOnePersonSquareMAX = new JTextField();
+    SearchComponent searchComponent;
 
     JButton searchStudent = new JButton("Search");
 
-    JPanel choiceSearch = new JPanel();
-    JPanel searchFields = new JPanel();
-    JPanel checkBox = new JPanel();
-    JPanel areaForPerson = new JPanel();
-    JPanel all = new JPanel();
-    JPanel action = new JPanel();
-
-    public DialogFindStudent(Controler controler){
-        this.controler = controler;
-        this.students = controler.getStudents();
+    public DialogFindStudent(ArrayList<Student> allStudents){
+        setName("Search for students");
+        this.allStudents = allStudents;
+        this.students = new ArrayList<>(allStudents);
         tableModel  = new StudentTableModel(students);
-        display = new Display(tableModel, controler);
+        display = new Display(tableModel, allStudents);
+        searchComponent = new SearchComponent(allStudents);
 
         setModal(true);
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
-        createChoiceBox();
-        createSearchFields();
-        searchStudent.addActionListener(new SearchListener());
-        action.add(searchStudent);
 
-        all.setLayout(new BoxLayout(all, BoxLayout.Y_AXIS));
         setSize(700, 600);
-        paintComponent();
-    }
-
-    protected void paintComponent(){
-        setName("Search for students");
-
-        all.add(choiceSearch);
-        all.add(searchFields);
-        all.add(action);
-        add(all);
+        add(searchComponent);
+        searchStudent.addActionListener(new SearchListener());
+        add(searchStudent);
         add(new JScrollPane(display), BorderLayout.CENTER);
 
         setVisible(true);
     }
 
-    protected void createChoiceBox(){
-        choiceSearch.setLayout(new BoxLayout(choiceSearch, BoxLayout.Y_AXIS));
-        choiceSearch.setAlignmentX(Component.LEFT_ALIGNMENT);
-        choiceSearch.add(new JLabel("Choose search criteria:"));
-
-        familySizeCB.addItemListener(itemEvent -> {
-            if(itemEvent.getStateChange() == ItemEvent.SELECTED) {
-                sFamilySize.setEditable(true);
-            } else {
-                sFamilySize.setEditable(false);
-            }
-        });
-        secondnameCB.addItemListener(itemEvent -> {
-            if(itemEvent.getStateChange() == ItemEvent.SELECTED) {
-                sSecondname.setEditable(true);
-            } else {
-                sSecondname.setEditable(false);
-            }
-        });
-        livingSquareCB.addItemListener(itemEvent -> {
-            if(itemEvent.getStateChange() == ItemEvent.SELECTED) {
-                sLivingSquare.setEditable(true);
-            } else {
-                sLivingSquare.setEditable(false);
-            }
-        });
-        onePersonSquareCB.addItemListener(itemEvent -> {
-            if(itemEvent.getStateChange() == ItemEvent.SELECTED) {
-                sOnePersonSquareMIN.setEditable(true);
-                sOnePersonSquareMAX.setEditable(true);
-            } else {
-                sOnePersonSquareMIN.setEditable(false);
-                sOnePersonSquareMAX.setEditable(false);
-            }
-        });
-
-        checkBox.setLayout(new BoxLayout(checkBox, BoxLayout.Y_AXIS));
-        checkBox.add(familySizeCB);
-        checkBox.add(secondnameCB);
-        checkBox.add(livingSquareCB);
-        checkBox.add(onePersonSquareCB);
-        choiceSearch.add(checkBox);
-    }
-
-    protected void createSearchFields(){
-        Dimension dimension = new Dimension(500,35);
-        Dimension dim = new Dimension(100, 35);
-        sFamilySize.setMaximumSize(dimension);
-        sSecondname.setMaximumSize(dimension);
-        sLivingSquare.setMaximumSize(dimension);
-        sOnePersonSquareMIN.setMaximumSize(dim);
-        sOnePersonSquareMAX.setMaximumSize(dim);
-
-        sFamilySize.setEditable(false);
-        sSecondname.setEditable(false);
-        sLivingSquare.setEditable(false);
-        sOnePersonSquareMIN.setEditable(false);
-        sOnePersonSquareMAX.setEditable(false);
-
-        searchFields.setLayout(new BoxLayout(searchFields, BoxLayout.Y_AXIS));
-        searchFields.add(new JLabel("Family size"));
-        searchFields.add(sFamilySize);
-        searchFields.add(new JLabel("Second name"));
-        searchFields.add(sSecondname);
-        searchFields.add(new JLabel("Living square"));
-        searchFields.add(sLivingSquare);
-        searchFields.add(new JLabel("Area/person"));
-
-        areaForPerson.setLayout(new BoxLayout(areaForPerson, BoxLayout.X_AXIS));
-        areaForPerson.add(new JLabel("min: "));
-        areaForPerson.add(sOnePersonSquareMIN);
-        areaForPerson.add(new JLabel("max: "));
-        areaForPerson.add(sOnePersonSquareMAX);
-        searchFields.add(areaForPerson);
-    }
-
-    protected class SearchListener implements ActionListener{
+    protected class SearchListener implements ActionListener {
         String secondname;
         int familySize = -1;
         double livingSquare = -1;
         double onePersonSquareMIN = -1;
         double onePersonSquareMAX = -1;
         public void actionPerformed(ActionEvent actionEvent) {
-            students = controler.getStudents();
+            students = new ArrayList<>(allStudents);
             checkParametr();
             search();
             showResult();
         }
 
         protected void checkParametr(){
-            if(familySizeCB.isSelected() && sFamilySize.getText().trim().isEmpty() == false){
-                familySize = Integer.parseInt(sFamilySize.getText());
+            secondname = null;
+            familySize = -1;
+            livingSquare = -1;
+            onePersonSquareMIN = -1;
+            onePersonSquareMAX = -1;
+
+            if(searchComponent.getFamilySizeCB().isSelected() && searchComponent.getSFamilySize().getText().trim().isEmpty() == false){
+                familySize = Integer.parseInt(searchComponent.getSFamilySize().getText());
             }
-            if(secondnameCB.isSelected() && sSecondname.getText().trim().isEmpty() == false){
-                secondname = sSecondname.getText();
+            if(searchComponent.getSecondnameCB().isSelected() && searchComponent.getSSecondname().getText().trim().isEmpty() == false){
+                secondname = searchComponent.getSSecondname().getText();
             }
-            if(livingSquareCB.isSelected() && sLivingSquare.getText().trim().isEmpty() == false){
-                livingSquare = Double.parseDouble(sLivingSquare.getText());
+            if(searchComponent.getLivingSquareCB().isSelected() && searchComponent.getSLivingSquare().getText().trim().isEmpty() == false){
+                livingSquare = Double.parseDouble(searchComponent.getSLivingSquare().getText());
             }
-            if(onePersonSquareCB.isSelected() &&
-                    sOnePersonSquareMAX.getText().trim().isEmpty() == false && sOnePersonSquareMIN.getText().trim().isEmpty() == false){
-                onePersonSquareMIN = Double.parseDouble(sOnePersonSquareMIN.getText());
-                onePersonSquareMAX = Double.parseDouble(sOnePersonSquareMAX.getText());
+            if(searchComponent.getOnePersonSquareCB().isSelected() &&
+                    searchComponent.getSOnePersonSquareMAX().getText().trim().isEmpty() == false &&
+                    searchComponent.getSOnePersonSquareMIN().getText().trim().isEmpty() == false){
+                onePersonSquareMIN = Double.parseDouble(searchComponent.getSOnePersonSquareMIN().getText());
+                onePersonSquareMAX = Double.parseDouble(searchComponent.getSOnePersonSquareMAX().getText());
             }
         }
 
@@ -191,11 +93,10 @@ public class DialogFindStudent extends JDialog{
             }
         }
         protected void showResult(){
-            //System.out.println();
             if(students.size() == 0){
                 JOptionPane.showMessageDialog(null, "Student(s) not found");
             }
-            display.refresh(students);
+            display.refresh(students, allStudents);
         }
     }
 }
