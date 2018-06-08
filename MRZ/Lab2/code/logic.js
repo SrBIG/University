@@ -12,20 +12,21 @@ var Knr = 0;
 var Enr = 0;
 var Dnr = 0;
 var L = 0;
+var sumTime = 0;
 var compositionTime = 0;
 var comparisonTime = 0;
-var sumTime = 0;
 var tableGenerated = 0;
 var compositionAmount = 0;
-var comparisonAmount = 0;
 var sumAmount = 0;
+var comparisonAmount = 0;
 var T1 = 0;
 var Tn = 0;
+var compareRange = 0;
 var totalRang = 0;
-var aftComma = 2;
-//created by: Vasilyeva
+var aftComma = 5;
 
-function letItGo() {
+//created by: Biruchov
+function start() {
     p = document.getElementById('pNum').value;
     m = document.getElementById('mNum').value;
     q = document.getElementById('qNum').value;
@@ -41,7 +42,7 @@ function letItGo() {
     Enr = 0;
     Dnr = 0;
     L = 0;
-    totalRang = 0;
+    totalRang = 2 * m * p * q;
 
     if (rightInput() == false)
         return;
@@ -67,6 +68,7 @@ function letItGo() {
     generateTable();
 }
 
+//created by: Biruchov
 function rightInput() {
     if (p == "" || m == "" || q == "" || n == "" || sumTime == "" || comparisonTime == "" || compositionTime == "") {
         alert("Заполните все поля.");
@@ -87,6 +89,7 @@ function rightInput() {
     return true;
 }
 
+//created by: Biruchov
 function generateData() {
     for (var i = 0; i < p; i++) {
         A[i] = new Array();
@@ -117,25 +120,27 @@ function generateData() {
     }
 }
 
+//created by: Biruchov
 function dMatrix() {
     D = [];
     for(var i = 0; i < p; i++) {
-        D[i] = new Array(); 
+        D[i] = new Array();
         for (var j = 0; j < q; j++) {
             D[i][j] = new Array();
             for (var k = 0; k < m; k++) {
                 D[i][j][k] = (A[i][k] * B[k][j]).toFixed(aftComma);
+
                 L += 2 * compositionTime;
-                totalRang += 2;
-                T1+=compositionTime;
+                T1 += compositionTime;
                 compositionAmount++;
             }
         }
     }
-    Tn += Math.ceil(compositionAmount/ n) * compositionTime;
-    comparisonAmount = 0;
+    Tn += Math.ceil(compositionAmount / n) * compositionTime;
+    compositionAmount = 0;
 }
 
+//created by: Biruchov
 function cMatrix() {
     compositionAmount = 0;
     sumAmount = 0;
@@ -143,83 +148,131 @@ function cMatrix() {
 
     dMatrix();
     for(var i = 0; i < p; i++) {
-        C[i] = new Array(); 
+        C[i] = new Array();
         for (var j = 0; j < q; j++) {
-            C[i][j] = findCij(i, j);
+            C[i][j] = calculateCij(i, j);
         }
     }
-
-    Tn += Math.ceil(compositionAmount/ n) * compositionTime;
-    Tn += Math.ceil(sumAmount/ n) * sumTime;
     Tn += Math.ceil(comparisonAmount / n) * comparisonTime;
 }
 
-function findCij(i, j) {
+//created by: Biruchov
+function calculateCij(i, j) {
     var Cij = 0;
-    if(compare(i, j) == 0) {
-    	Cij = sumDkij(i, j);
-        
-    } else {
-        Cij = multiplyDkij(i, j);
+	var Dk = [];
+    for (var k = 0; k < D.length; k++) {
+        Dk.push(parseFloat(D[k][i][j]));
     }
-    return Cij;
+	Cij = compare(i, j, Dk);
+    compareRange = 0;
+    return Cij.toFixed(aftComma);
 }
 
-function compare(i, j) {
+//created by: Biruchov
+function compare(i, j, Dk) {
     for(var x = 0; x < m; x++) {
         T1 += comparisonTime;
         comparisonAmount++;
         L += 2 * comparisonTime;
-        totalRang += 2;
-        if(G[x][i] > H[j][x]) { 
-            return 0;
+        compareRange += 2;      
+        if(G[x][i] < H[j][x]) {
+			return composeArray(Dk, 2);
         }
     }
-    return 0;
+	return sumArray(Dk, 2);
 }
 
-function sumDkij(i, j) {
-    var sum = 0;
-    for(var k = 0; k < m; k++) {
-        sum +=  parseFloat(D[i][j][k]);
-        totalRang += 1;
-        L += 1 * sumTime;
-        sumAmount++;
-        T1 += sumTime;  
-        
-    }  
-    return sum.toFixed(aftComma);
-} 
+//created by: Vasilyeva
+function sumArray(D, r) {
+	
+    if (D.length == 1) {
+        var res = D[0];
+        return res;
+    } else {
+        var t = 0;
+        var nIter = 0;
+        var isEven = 1;
+        var res = [];
+        if (D.length % 2 === 1) {
+            res.push(D[D.length - 1]);
+            isEven = 0;
+        }
+        for (var i = 0; i < (D.length - D.length % 2); i += 2) {
+            if (nIter === n) {
+                for (var j = i; j < D.length; j++) {
+                    res.push(D[j]);
+                }
+                break;
+            }
 
-function multiplyDkij(i, j) {
-    var composition = 1;
-    for(var k = 0; k < m; k++) {
-        composition = composition * D[i][j][k];
-        totalRang += 1;
-        L += 1 * compositionTime;
-        compositionAmount++;
-        T1 += compositionTime;
+            res.push(D[i] + D[i + 1]);
+			sumAmount++;
+            nIter += 1;
+            t += sumTime;
+
+        }
+        if(isEven == 1)
+		  L += sumTime * sumAmount * r;
+        else
+            L += sumTime * sumAmount * r - 1;
+        T1 += t;
+        Tn += Math.ceil(t / n);
+        return (sumArray(res, r * 2));
     }
-    return composition.toFixed(aftComma);
 }
 
+//created by: Biruchov
+function composeArray(D, range) {
+    if (D.length == 1) {
+        var res = D[0];
+        return res;
+    } else {
+        var t = 0;
+        var nIter = 0;
+        var res = [];
+        if (D.length % 2 === 1) {
+            res.push(D[D.length - 1]);
+        }
+        for (var i = 0; i < (D.length - D.length % 2); i += 2) {
+            if (nIter === n) {
+                for (var j = i; j < D.length; j++) {
+                    res.push(D[j]);
+                }
+                break;
+            }
+
+            res.push(D[i] * D[i + 1]);
+
+            nIter += 1;
+			compositionAmount++;
+            t += compositionTime;
+        }
+        T1 += t;
+        Tn += Math.ceil(t / n);
+		L += compositionTime * compositionAmount * range;
+        return (composeArray(res, range * 2));
+    }
+}
+
+//created by: Biruchov
 function calculateKnr() {
     Knr = T1 / Tn;
 }
 
+//created by: Biruchov
 function calculateEnr() {
-    calculateKnr()
+    calculateKnr();
     Enr = Knr / n;
 }
 
+//created by: Biruchov
 function calculateD() {
-    console.log(totalRang);
     L = L / totalRang;
     Dnr = Tn / L;
 }
 
+//created by: Biruchov
 function generateTable() {
-
     tableGenerated = 1;
 
     var table = document.getElementById('mainTable');
@@ -342,9 +395,103 @@ function generateTable() {
 }
 
 
-//////////// created by Vasilyeva/////////////////
-////////////////////charts////////////////////////
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////// created by: Vasilyeva /////////////////
+////////////////////charts////////////////////////
 function buildCharts() {
     A = [];
     B = [];
@@ -646,7 +793,7 @@ function buildCharts() {
                 Knr = 0;
                 Enr = 0;
                 Dnr = 0;
-                totalRang = m * p * q;;
+                totalRang = 2 * m * p * q;;
                 cMatrix();
                 calculateD();
                 benchmark[m - 1].push(Dnr);
@@ -705,7 +852,7 @@ function buildCharts() {
                 Knr = 0;
                 Enr = 0;
                 Dnr = 0;
-                totalRang = m * p * q;
+                //totalRang = m * p * q;
                 cMatrix();
                 calculateD();
                 benchmark[n - 1].push(Dnr);

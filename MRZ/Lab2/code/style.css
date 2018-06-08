@@ -8,7 +8,7 @@ body {
 }
 
 .optionButton {
-    margin-left: 160px;
+    margin-left: 40px;
     margin-top: 20px;
 }
 
@@ -17,12 +17,12 @@ body {
 }
 
 .compareTimeLabel {
-    margin-right: 17px;
+    margin-right: 53px;
     margin-left: 20px;
 }
 
 .sumTimeLabel {
-    margin-right: 101px;
+    margin-right: 137px;
     margin-left: 20px;
 }
 
@@ -65,4 +65,10 @@ tr, td {
     text-align: left;
     font-size: 20px;
     font-weight: bold;
+}
+
+.hiden {
+    border: none;
+    color: white;
+    background-color: white;
 }
