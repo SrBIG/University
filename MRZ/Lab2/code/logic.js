@@ -13,10 +13,10 @@ var Enr = 0;
 var Dnr = 0;
 var L = 0;
 var sumTime = 0;
-var compositionTime = 0;
+var multiplyTime = 0;
 var comparisonTime = 0;
 var tableGenerated = 0;
-var compositionAmount = 0;
+var multiplyAmount = 0;
 var sumAmount = 0;
 var comparisonAmount = 0;
 var T1 = 0;
@@ -33,7 +33,7 @@ function start() {
     n = document.getElementById('nNum').value;
     
     sumTime = document.getElementById('sumTime').value;
-    compositionTime = document.getElementById('compositTime').value;
+    multiplyTime = document.getElementById('compositTime').value;
     comparisonTime = document.getElementById('compareTime').value;
 
     T1 = 0;
@@ -70,21 +70,21 @@ function start() {
 
 //created by: Biruchov
 function rightInput() {
-    if (p == "" || m == "" || q == "" || n == "" || sumTime == "" || comparisonTime == "" || compositionTime == "") {
+    if (p == "" || m == "" || q == "" || n == "" || sumTime == "" || comparisonTime == "" || multiplyTime == "") {
         alert("Заполните все поля.");
         return false;
     }
 
    if (!p.match(/^\d+$/) || !m.match(/^\d+$/) || !q.match(/^\d+$/) || !n.match(/^\d+$/) || !sumTime.match(/^\d+$/) || !comparisonTime.match(/^\d+$/) 
-   || !compositionTime.match(/^\d+$/) || /^0/.test(p) || /^0/.test(m) || /^0/.test(q) || /^0/.test(n) || /^0/.test(compositionTime) 
-   || /^0/.test(compositionTime) || /^0/.test(sumTime)) {
+   || !multiplyTime.match(/^\d+$/) || /^0/.test(p) || /^0/.test(m) || /^0/.test(q) || /^0/.test(n) || /^0/.test(multiplyTime) 
+   || /^0/.test(multiplyTime) || /^0/.test(sumTime)) {
         alert("Введите корректные значения.");
         return false;
     }
 
     sumTime = parseInt(sumTime);
     comparisonTime = parseInt(comparisonTime);
-    compositionTime = parseInt(compositionTime);
+    multiplyTime = parseInt(multiplyTime);
 
     return true;
 }
@@ -130,19 +130,18 @@ function dMatrix() {
             for (var k = 0; k < m; k++) {
                 D[i][j][k] = (A[i][k] * B[k][j]).toFixed(aftComma);
 
-                L += 2 * compositionTime;
-                T1 += compositionTime;
-                compositionAmount++;
+                L += 2 * multiplyTime;
+                T1 += multiplyTime;
+                multiplyAmount++;
             }
         }
     }
-    Tn += Math.ceil(compositionAmount / n) * compositionTime;
-    compositionAmount = 0;
+    multiplyAmount = 0;
 }
 
 //created by: Biruchov
 function cMatrix() {
-    compositionAmount = 0;
+    multiplyAmount = 0;
     sumAmount = 0;
     comparisonAmount = 0;
 
@@ -153,7 +152,6 @@ function cMatrix() {
             C[i][j] = calculateCij(i, j);
         }
     }
-    Tn += Math.ceil(comparisonAmount / n) * comparisonTime;
 }
 
 //created by: Biruchov
@@ -173,18 +171,17 @@ function compare(i, j, Dk) {
     for(var x = 0; x < m; x++) {
         T1 += comparisonTime;
         comparisonAmount++;
-        L += 2 * comparisonTime;
+        L += 2 * comparisonTime * 2;
         compareRange += 2;      
-        if(G[x][i] < H[j][x]) {
+        if(G[x][i] > H[j][x]) {
 			return composeArray(Dk, 2);
         }
     }
-	return sumArray(Dk, 2);
+	return composeArray(Dk, 2);
 }
 
 //created by: Vasilyeva
 function sumArray(D, r) {
-	
     if (D.length == 1) {
         var res = D[0];
         return res;
@@ -244,12 +241,12 @@ function composeArray(D, range) {
             res.push(D[i] * D[i + 1]);
 
             nIter += 1;
-			compositionAmount++;
-            t += compositionTime;
+			multiplyAmount++;
+            t += multiplyTime;
         }
         T1 += t;
         Tn += Math.ceil(t / n);
-		L += compositionTime * compositionAmount * range;
+		L += multiplyTime * multiplyAmount * range;
         return (composeArray(res, range * 2));
     }
 }
