@@ -1,3 +1,7 @@
+/*
+   * created by: Buruchiv
+   * group: 621701
+*/
 var A = [];
 var B = [];
 var G = [];
@@ -123,6 +127,7 @@ function generateData() {
 //created by: Biruchov
 function dMatrix() {
     D = [];
+    var t = 0;
     for(var i = 0; i < p; i++) {
         D[i] = new Array();
         for (var j = 0; j < q; j++) {
@@ -131,11 +136,13 @@ function dMatrix() {
                 D[i][j][k] = (A[i][k] * B[k][j]).toFixed(aftComma);
 
                 L += 2 * multiplyTime;
-                T1 += multiplyTime;
+                t += multiplyTime;
                 multiplyAmount++;
             }
         }
     }
+    T1 += t;
+    Tn = Math.ceil(t/n);
     multiplyAmount = 0;
 }
 
@@ -168,87 +175,71 @@ function calculateCij(i, j) {
 
 //created by: Biruchov
 function compare(i, j, Dk) {
+	var t = 0;
     for(var x = 0; x < m; x++) {
-        T1 += comparisonTime;
+        t += comparisonTime;
         comparisonAmount++;
         L += 2 * comparisonTime * 2;
         compareRange += 2;      
         if(G[x][i] > H[j][x]) {
+        	T1 += t;
+        	Tn += Math.ceil(t/n);
 			return composeArray(Dk, 2);
         }
     }
-	return composeArray(Dk, 2);
+    T1 += t;
+    Tn += Math.ceil(t/n);
+	return sumArray(Dk, 2);
 }
 
-//created by: Vasilyeva
-function sumArray(D, r) {
-    if (D.length == 1) {
-        var res = D[0];
-        return res;
-    } else {
-        var t = 0;
-        var nIter = 0;
-        var isEven = 1;
-        var res = [];
-        if (D.length % 2 === 1) {
-            res.push(D[D.length - 1]);
-            isEven = 0;
-        }
-        for (var i = 0; i < (D.length - D.length % 2); i += 2) {
-            if (nIter === n) {
-                for (var j = i; j < D.length; j++) {
-                    res.push(D[j]);
-                }
-                break;
-            }
-
-            res.push(D[i] + D[i + 1]);
+//created by: Biruchov
+function sumArray(D, range) {
+	var res;
+	var num = D.length;
+	var Ds = D;
+	while(num>1){
+		var t = 0;
+		if (num % 2 === 1) {
+			num++;
+			Ds[num - 1] = 1;
+		}
+		for (var i = 0; i < num; i+=2) {
+			Ds[i/2] = Ds[i] + Ds[i+1];
 			sumAmount++;
-            nIter += 1;
-            t += sumTime;
-
-        }
-        if(isEven == 1)
-		  L += sumTime * sumAmount * r;
-        else
-            L += sumTime * sumAmount * r - 1;
-        T1 += t;
-        Tn += Math.ceil(t / n);
-        return (sumArray(res, r * 2));
-    }
+			t += sumTime;
+		}
+		num /=2;
+		T1 += t;
+    	Tn += Math.ceil(t / n);
+    	L += sumTime * sumAmount * range;
+	}
+	res = Ds[0];
+	return res;
 }
 
 //created by: Biruchov
 function composeArray(D, range) {
-    if (D.length == 1) {
-        var res = D[0];
-        return res;
-    } else {
-        var t = 0;
-        var nIter = 0;
-        var res = [];
-        if (D.length % 2 === 1) {
-            res.push(D[D.length - 1]);
-        }
-        for (var i = 0; i < (D.length - D.length % 2); i += 2) {
-            if (nIter === n) {
-                for (var j = i; j < D.length; j++) {
-                    res.push(D[j]);
-                }
-                break;
-            }
-
-            res.push(D[i] * D[i + 1]);
-
-            nIter += 1;
+	var res;
+	var num = D.length;
+	var Ds = D;
+	while(num>1){
+		var t = 0;
+		if (num % 2 === 1) {
+			num++;
+			Ds[num - 1] = 1;
+		}
+		for (var i = 0; i < num; i+=2) {
+			Ds[i/2] = Ds[i] * Ds[i+1];
 			multiplyAmount++;
-            t += multiplyTime;
-        }
-        T1 += t;
-        Tn += Math.ceil(t / n);
-		L += multiplyTime * multiplyAmount * range;
-        return (composeArray(res, range * 2));
-    }
+			t += multiplyTime;
+		}
+		num /=2;
+		T1 += t;
+    	Tn += Math.ceil(t / n);
+    	L += multiplyTime * multiplyAmount * range;
+	}
+	res = Ds[0];
+	return res;
 }
 
 //created by: Biruchov
