@@ -3,7 +3,6 @@ package com.company.mrbig;
 import com.company.mrbig.Model.GeneratorDB;
 import com.company.mrbig.Model.WriterXML;
 import com.company.mrbig.Viev.Dialogs.DialogStart;
-import com.company.mrbig.Viev.MainFrame;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
