@@ -21,6 +21,8 @@ public class Graphic extends JPanel {
     JLabel scope = new JLabel("Scope: 100%");
     JPanel action = new JPanel();
 
+    boolean scrollStatus = false;
+
     public Graphic(List<Coordinate> coordinates) {
         this.coordinates = new ArrayList<>(coordinates);
         action.setLayout(new BoxLayout(action, BoxLayout.X_AXIS));
@@ -34,6 +36,10 @@ public class Graphic extends JPanel {
         add(action, BorderLayout.SOUTH);
     }
 
+    public void setScrollStatus(boolean scrollStatus){
+        this.scrollStatus = scrollStatus;
+    }
+
     class BuildListener implements ActionListener{
 
         @Override
@@ -44,39 +50,17 @@ public class Graphic extends JPanel {
 
     private class GraphicPainter extends JPanel{
         private float scale = 1.5f;
-        boolean permissionScroll = false;
         public GraphicPainter(){
 
-            addKeyListener(new KeyListener() {
-                @Override
-                public void keyTyped(KeyEvent keyEvent) {
-
-                }
-
-                @Override
-                public void keyPressed(KeyEvent keyEvent) {
-                    if(keyEvent.getModifiers() == InputEvent.CTRL_MASK) {
-                        permissionScroll = true;
-                    } else{permissionScroll = false;}
-                }
-
-                @Override
-                public void keyReleased(KeyEvent keyEvent) {
-
-                }
-            });
-
-            addMouseWheelListener(new MouseAdapter() {
-                @Override
-                public void mouseWheelMoved(MouseWheelEvent e) {
-                    if(permissionScroll == true) {
+            addMouseWheelListener(e -> {
+                if (e.getModifiers() == InputEvent.CTRL_MASK) {
                         double delta = 0.05f * e.getPreciseWheelRotation();
                         scale += delta;
                         revalidate();
                         int realScope = (int) ((scale / 1.5f) * 100);
                         //scope.setText("Scope: " + realScope + "%");
                         repaint();
-                    }
+
                 }
             });
 
@@ -143,7 +127,6 @@ public class Graphic extends JPanel {
             g2d.drawLine(width+nullPoint, height+nullPoint, width+nullPoint-arrow, height+nullPoint-arrow);
             g2d.drawLine(width+nullPoint, height+nullPoint, width+nullPoint-arrow, height+nullPoint+arrow);
 
-            {
                 int correct = 12;
                 g2d.setStroke(new BasicStroke(0.5f));
                 g2d.drawString("x",width+nullPoint, height+nullPoint + correct);
@@ -163,11 +146,10 @@ public class Graphic extends JPanel {
                 g2d.drawLine(width/2+nullPoint, height+nullPoint, width/2+nullPoint, nullPoint);
                 g2d.drawString("1,5", width-(width/4)+nullPoint-correct, height+nullPoint+correct);
                 g2d.drawLine(width-(width/4)+nullPoint, height+nullPoint, width-(width/4)+nullPoint, nullPoint);
-            }
-            if (buildSt) {
 
+            if (buildSt) {
                 g2d.setColor(Color.RED);
-                g2d.setStroke(new BasicStroke(1.5f));
+                g2d.setStroke(new BasicStroke(2.0f));
 
                 Coordinate prev = coordinates.get(0);
                 for (Coordinate cur : coordinates) {
@@ -178,10 +160,12 @@ public class Graphic extends JPanel {
                     g2d.drawLine(x1, y1, x2, y2);
                     prev = cur;
                 }
+                
+                g2d.setColor(Color.BLACK);
+                g2d.drawString("1,75", width-(width/8)+nullPoint-correct, height+nullPoint+correct);
+                g2d.drawLine(width-(width/8)+nullPoint, height+nullPoint+5, width-(width/8)+nullPoint, height+nullPoint-5);
             }
             repaint();
         }
-
-
     }
 }
