@@ -1,10 +1,9 @@
-package Viev;
+package view;
 
-import Model.Coordinate;
+import model.Coordinate;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
