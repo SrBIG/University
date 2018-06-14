@@ -39,9 +39,9 @@ public class MainFrame {
         info.setMaximumSize(new Dimension(50, 600));
         all.add(info);
         graphic = new Graphic(controller.getCoordinates());
-        all.add(new JScrollPane(graphic));
+        all.add(graphic);
         frame.add(all);
-        frame.setSize(800, 600);
+        frame.setSize(600, 500);
         frame.setResizable(false);
         frame.setVisible(true);
     }

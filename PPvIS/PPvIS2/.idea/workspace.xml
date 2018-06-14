@@ -27,8 +27,8 @@
       <file leaf-file-name="Display.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Display.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-396">
-              <caret line="33" column="79" selection-start-line="33" selection-start-column="68" selection-end-line="33" selection-end-column="79" />
+            <state relative-caret-position="522">
+              <caret line="84" column="39" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -336,12 +336,12 @@
       <workItem from="1528535390047" duration="178000" />
       <workItem from="1528889126798" duration="299000" />
       <workItem from="1528904500102" duration="3078000" />
-      <workItem from="1528958660138" duration="609000" />
+      <workItem from="1528958660138" duration="1209000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="94508000" />
+    <option name="totallyTimeSpent" value="95108000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -748,8 +748,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/company/mrbig/Viev/Display.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-396">
-          <caret line="33" column="79" selection-start-line="33" selection-start-column="68" selection-end-line="33" selection-end-column="79" />
+        <state relative-caret-position="522">
+          <caret line="84" column="39" selection-start-line="84" selection-start-column="39" selection-end-line="84" selection-end-column="39" />
         </state>
       </provider>
     </entry>
